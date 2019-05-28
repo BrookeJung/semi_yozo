@@ -1,5 +1,3 @@
 INDEX VERSION 1.131
-C:\Users\JUNG JI YEA\Documents\semi_yozo\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2475574259.index
-\Recipe01\src
-C:\Users\JUNG JI YEA\Documents\semi_yozo\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1673695738.index
-\Recipe01\src
+D:\Users\sooyeon\Documents\semi_yozo\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1063077100.index
+\yorizori\src
