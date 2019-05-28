@@ -38,3 +38,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.wst.server.discovery 1 0 2019-05-28 10:43:59.704
 !MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2019-05-28 11:13:22.155
+!MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
