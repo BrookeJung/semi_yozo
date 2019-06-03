@@ -24,6 +24,8 @@
           });
           $().UItoTop({ easingType: 'easeOutQuart' });
         }) 
+        
+        
      </script>
   
      </head>
@@ -31,10 +33,20 @@
 
 <!--==============================header=================================-->
  <header> 
+ <form name="search" align="left" style="margin-left: 70px;"
+		method="get" action="NextFile.jsp" onsubmit="return keyword_check()">
+
+		<!-- align : 정렬 , style : 스타일 정보 포함 (margin : 여백 설정) , method : 전달 방식 ,  action : submit 시 이동 경로 ,onsubmit : submit 클릭시 호출 조건 (true 일 때 action으로 넘어감 )-->
+
+		<td><input type="text" name="keyword"></td>
+
+		<td><input type="submit" value="search"></td>
+
+	</form>
   <div class="container_12">
    <div class="grid_12"> 
     <div class="socials">
-       <a id="log" href="login.html"><img alt="login" src="images/login.png"></a> 
+       <a id="log" href="Login.jsp"><img alt="login" src="images/login.png"></a> 
     </div>
     <h1><a id="logo" href="MainBoard.jsp"><img src="images/logo.png" alt="Boo House"></a> </h1>
     <div class="menu_block">
@@ -57,6 +69,7 @@
 <div class="clear"></div>
           </div>
       </div>
+      
 </header>
 
 <!--==============================Content=================================-->
