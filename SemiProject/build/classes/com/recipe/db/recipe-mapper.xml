@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.mapper">
+
+	<resultMap type="recipe_materialDto" id="materialDto">
+		<result column="RECIPE_ID" property="recipe_id" />
+		<result column="IRDNT_SN" property="irdnt_sn" />
+		<result column="IRDNT_NM" property="irdnt_nm" />
+		<result column="IRDNT_CPCTY" property="irdnt_cpcty" />
+		<result column="IRDNT_TY_CODE" property="irdnt_ty_code" />
+		<result column="IRDNT_TY_NM" property="irdnt_ty_nm" />
+	</resultMap>
+
+	<select id="selectList" resultMap="materialDto">
+		SELECT DISTINCT IRDNT_NM FROM RECIPE_MATERIAL
+	</select>
+
+
+</mapper>
