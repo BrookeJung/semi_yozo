@@ -1,6 +1,6 @@
 package com.recipe.controller;
 
-import java.io.IOException;		
+import java.io.IOException;			
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.recipe_info.dao.recipe_InfoDao;
-import com.recipe_info.dto.recipe_InfoDto;
+import com.recipe_info.dao.RecipeInfoDao;
+import com.recipe_info.dto.RecipeInfoDto;
+import com.recipe_material.dao.RecipeMaterialDao;
 
-import com.recipe_material.dao.recipe_materialDao;
-
-import com.recipe_material.dto.recipe_materialDto;
+import com.recipe_material.dto.RecipeMaterialDto;
 
 
-@WebServlet("/recipeController.do")
-public class recipeController extends HttpServlet {
+@WebServlet("/RecipeController.do")
+public class RecipeController extends HttpServlet {
 	
       
 
-	public recipeController() {
+	public RecipeController() {
     	
     }
 
@@ -48,13 +47,13 @@ public class recipeController extends HttpServlet {
 	    	response.sendRedirect("recipe_material_store.jsp");
 	    }//본격저장(정보)
 	    else if(command.equals("storedb_info")){
-	    	recipe_InfoDao dao=new recipe_InfoDao();
+	    	RecipeInfoDao dao=new RecipeInfoDao();
 	    	String[] recipeList=request.getParameterValues("recipe");
-	    	List<recipe_InfoDto> list=new ArrayList<recipe_InfoDto>();
+	    	List<RecipeInfoDto> list=new ArrayList<RecipeInfoDto>();
 	    	for(int i=0;i<recipeList.length;i++) {
 	    		System.out.println(recipeList[i]);
 	    		String[] recipe=recipeList[i].split("※");
-	    		recipe_InfoDto dto=new recipe_InfoDto();
+	    		RecipeInfoDto dto=new RecipeInfoDto();
 	    		dto.setRecipe_id(Integer.parseInt(recipe[0]));
 	    		dto.setRecipe_nm_ko(recipe[1]);
 	    		dto.setSumry(recipe[2]);
@@ -83,13 +82,13 @@ public class recipeController extends HttpServlet {
 	    	response.sendRedirect("mainhomepage.jsp");
 	    }//본격저장(재료)
 	    else if(command.equals("storedb_material")){
-			recipe_materialDao dao = new recipe_materialDao();
+			RecipeMaterialDao dao = new RecipeMaterialDao();
 			String [] RecipeList = request.getParameterValues("recipe_material");
-			List<recipe_materialDto> list = new ArrayList<recipe_materialDto>();			
+			List<RecipeMaterialDto> list = new ArrayList<RecipeMaterialDto>();			
 			for(int i = 0; i < RecipeList.length; i++) {
 				System.out.println(RecipeList[i]);
 				String [] recipeMaterial = RecipeList[i].split("//");
-				recipe_materialDto dto = new recipe_materialDto(
+				RecipeMaterialDto dto = new RecipeMaterialDto(
 							Integer.parseInt(recipeMaterial[0]),Integer.parseInt(recipeMaterial[1]), 
 											 recipeMaterial[2],recipeMaterial[3], 
 											 recipeMaterial[4],recipeMaterial[5]);
@@ -108,10 +107,19 @@ public class recipeController extends HttpServlet {
 
 	    }
 	    else if(command.equals("myrefrigerator")) {
-	    	recipe_materialDao materialdao=new recipe_materialDao();
-	    	List<recipe_materialDto> list=materialdao.selectList();
+	    	RecipeMaterialDao materialdao=new RecipeMaterialDao();
+	    	List<RecipeMaterialDto> list=materialdao.selectList();
 	    	request.setAttribute("list", list);
 	    	dispatch(request, response,"myrefrigerator.jsp");
+	    }else if(command.equals("insertrefrigerator")) {
+	    	String[] material=request.getParameterValues("realvalue");
+	    	for(int i=0;i<material.length;i++) {
+	    		System.out.println(material[i]);
+	    	}
+	    	//선택된 값들 material에 들어가있음
+	    	
+	    	
+	    	
 	    }
 	   
 	    
