@@ -17,6 +17,8 @@ import com.recipe_info.dto.RecipeInfoDto;
 import com.recipe_material.dao.RecipeMaterialDao;
 
 import com.recipe_material.dto.RecipeMaterialDto;
+import com.recipe_process.dao.RecipeProcessDao;
+import com.recipe_process.dto.RecipeProcessDto;
 
 
 @WebServlet("/RecipeController.do")
@@ -111,16 +113,52 @@ public class RecipeController extends HttpServlet {
 	    	List<RecipeMaterialDto> list=materialdao.selectList();
 	    	request.setAttribute("list", list);
 	    	dispatch(request, response,"myrefrigerator.jsp");
-	    }else if(command.equals("insertrefrigerator")) {
-	    	String[] material=request.getParameterValues("realvalue");
-	    	for(int i=0;i<material.length;i++) {
-	    		System.out.println(material[i]);
-	    	}
-	    	//선택된 값들 material에 들어가있음
+	    }else if(command.equals("recipeinfoview")) {
+	    	RecipeInfoDao infodao=new RecipeInfoDao();
+	    	
+	    	RecipeInfoDto dto=infodao.selectrecipeview();
+	    	request.setAttribute("dto", dto);
+	    	dispatch(request, response,"recipeinfoview.jsp");
 	    	
 	    	
 	    	
-	    }
+	    }else if (command.equals("start_process")) {
+			response.sendRedirect("recipe_process_store.jsp");
+		}
+//			레시피 과정값 전달
+		else if (command.equals("storedb_process")) {
+//				DAO호출
+			RecipeProcessDao dao = new RecipeProcessDao();
+
+//				recipe_process.js에서 tbody값들을 리스트에 담아준다.
+			String[] RecipePList = request.getParameterValues("recipe_process");
+			List<RecipeProcessDto> list = new ArrayList<RecipeProcessDto>();
+
+//				담아오는 값만큼 테이블 실행하고 콘솔창에 출력
+			for (int i = 0; i < RecipePList.length; i++) {
+				System.out.println(RecipePList[i]);
+
+//					tbody에 받아오는 값들을 "/" 나눠서 집어넣는다.
+				String[] recipeProcess = RecipePList[i].split("//");
+//					DTO(파라미터) 호출
+				RecipeProcessDto dto = new RecipeProcessDto(Integer.parseInt(recipeProcess[0]), Integer.parseInt(recipeProcess[1]),
+						recipeProcess[2], recipeProcess[3], recipeProcess[4]);
+
+//				 	list에 dto값들을 넣어준다.
+				list.add(dto);
+			}
+
+			int res = dao.insert(list);
+
+			if (res == list.size()) {
+				System.out.println("저장 성공");
+			} else {
+				System.out.println("저장 실패");
+			}
+
+			response.sendRedirect("mainhomepage.jsp");
+
+		}
 	   
 	    
 	    

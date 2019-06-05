@@ -13,8 +13,10 @@
 
 <a href="RecipeController.do?command=start_material">레시피재료 DB저장방법</a>
 
+<a href="RecipeController.do?command=start_process">레시피과정 DB저장방법</a>
 <!-- xml로 가서 다시 controller로 -->
 <a href="RecipeController.do?command=myrefrigerator">냉장고에 재료넣기</a>
+<a href="RecipeController.do?command=recipeinfoview">메뉴보기</a> 
 
 
 </body>

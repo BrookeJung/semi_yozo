@@ -14,8 +14,21 @@
 		<result column="IRDNT_TY_NM" property="irdnt_ty_nm" />
 	</resultMap>
 
+
 	<select id="selectList" resultMap="materialDto">
 		SELECT DISTINCT IRDNT_NM FROM RECIPE_MATERIAL 
+	</select>
+	
+	<insert id="insertRefrigerator" parameterType="RefrigeratorDto">
+	INSERT INTO MY_REFRIGERATOR
+	 VALUES(#{id},#{irdnt_nm})
+	
+	</insert>
+	
+	<select id="selectrecipeview" resultType="RecipeInfoDto">
+		SELECT * FROM RECIPE_INFO WHERE RECIPE_ID= 11
+	
+	
 	</select>
 
 

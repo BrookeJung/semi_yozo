@@ -60,10 +60,11 @@ $(function(){
 
 
 
-	<form action="recipeController.do" method="post">
+	<form action="myrefrigeratorres.jsp" method="post">
 	
 		<input type="text" list="materiallist" id="datalist" >
 		<input type="hidden" name="command" value="insertrefrigerator">
+		<input type="hidden" name="fakeid" value="fake">
 	
 		<datalist id="materiallist">
 			<c:forEach items="${list }" var="dto">

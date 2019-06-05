@@ -1,12 +1,22 @@
 package com.recipe_info.dao;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;	
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import java.util.List;
 
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import com.recipe_info.dto.RecipeInfoDto;
+
 
 import common.JDBCTemplate;
 
@@ -84,5 +94,23 @@ public class RecipeInfoDao extends JDBCTemplate {
 		}
 		return res;
 	}
+	public RecipeInfoDto selectrecipeview() {
+		String resource = "com/recipe/db/recipe-config.xml";
+		InputStream inputStream = null;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		RecipeInfoDto dto=session.selectOne("recipe.mapper.selectrecipeview");
+				
+	
+
+		return dto;
+	}
+	
 	
 }
