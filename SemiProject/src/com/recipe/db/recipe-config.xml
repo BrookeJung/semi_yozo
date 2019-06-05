@@ -3,10 +3,10 @@
 <configuration>
 	<properties resource="com/recipe/db/db.properties"></properties>
 	<typeAliases>
-		<typeAlias type="com.recipe_material.dto.recipe_materialDto"
-			alias="recipe_materialDto" />
-		<typeAlias type="com.recipe_info.dto.recipe_InfoDto" 
-		alias="recipe_InfoDto"/>
+		<typeAlias type="com.recipe_material.dto.RecipeMaterialDto"
+			alias="RecipeMaterialDto" />
+		<typeAlias type="com.recipe_info.dto.RecipeInfoDto" 
+		alias="RecipeInfoDto"/>
 		
 	</typeAliases>
 

@@ -13,7 +13,7 @@
 
 
 <body>
-	<form action="recipeController.do" method="post">
+	<form action="RecipeController.do" method="post">
       <input type="hidden" name="command" value="storedb_material" />
       <input type="submit" value="db에 저장"/>
       <table>

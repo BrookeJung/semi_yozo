@@ -17,10 +17,9 @@ $(function(){
 	//재료추가 버튼 누르면 div에 재료 출력됨
     $('#addMaterial').click(function(){
     	var material = $('#datalist').val();
-               $('#result').append("<input type='checkbox' name='chk' onclick='allcancel();'><span name='materials'>"
-               +material+"</span>");
-             
-                     
+      $('#result').append("<div id='insertmaterials'><input type='checkbox' name='chk' onclick='allcancel();'/>"+material+"<input type='hidden' name='realvalue' value ='"+material+"'/></div>");
+      
+       
 
     });
 	
@@ -47,10 +46,11 @@ $(function(){
      }
  }
  function chkdelete(){
-	 $("input[name=chk]:checked").remove();
+	 $("input[name=chk]:checked").parent().remove();
 	 
 	 
  }
+ 
 
 
 </script>
@@ -62,32 +62,33 @@ $(function(){
 
 	<form action="recipeController.do" method="post">
 	
-	<input type="text" list="materiallist" id="datalist" >
-	<input type="hidden" name="command" value="insertrefrigerator">
-
-	<datalist id="materiallist">
-		<c:forEach items="${list }" var="dto">
-
-			<option value="${dto.irdnt_nm }">
-		</c:forEach>
-	</datalist>
+		<input type="text" list="materiallist" id="datalist" >
+		<input type="hidden" name="command" value="insertrefrigerator">
 	
-	<input type="button" id="searchMaterial" value="재료검색">
-	<input type="button" id="addMaterial" value="재료추가">
-	<!-- button누르면 div에 텍스트출력 계속해서  -->
+		<datalist id="materiallist">
+			<c:forEach items="${list }" var="dto">
 	
-
-
-	<div id="result">
-			<input type="checkbox" name="all" onclick="allChk(this.checked)" id="">전체선택
-			<input type="button" name="delete" onclick="chkdelete();" id="" value="항목에서 빼기">
-			<br>	
-
-	</div>
-
-	<input type="submit" value="냉장고에 저장">
+				<option value="${dto.irdnt_nm }">
+			</c:forEach>
+		</datalist>
+		
+		<input type="button" id="searchMaterial" value="재료검색">
+		<input type="button" id="addMaterial" value="재료추가">
+		<!-- button누르면 div에 텍스트출력 계속해서  -->
+		
+	
+	
+		<div id="result">
+				<input type="checkbox" name="all" onclick="allChk(this.checked)" id="">전체선택
+				<input type="button" name="delete" onclick="chkdelete();" id="" value="항목에서 빼기">
+				<br>	
+				
+		</div>
+	
+		<input type="submit" value="냉장고에 저장" />
 
 	</form>
+	
 
 </body>
 </html>

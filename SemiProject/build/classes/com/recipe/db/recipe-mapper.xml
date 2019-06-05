@@ -5,7 +5,7 @@
 
 <mapper namespace="recipe.mapper">
 
-	<resultMap type="recipe_materialDto" id="materialDto">
+	<resultMap type="RecipeMaterialDto" id="materialDto">
 		<result column="RECIPE_ID" property="recipe_id" />
 		<result column="IRDNT_SN" property="irdnt_sn" />
 		<result column="IRDNT_NM" property="irdnt_nm" />
@@ -15,7 +15,7 @@
 	</resultMap>
 
 	<select id="selectList" resultMap="materialDto">
-		SELECT DISTINCT IRDNT_NM FROM RECIPE_MATERIAL
+		SELECT DISTINCT IRDNT_NM FROM RECIPE_MATERIAL 
 	</select>
 
 

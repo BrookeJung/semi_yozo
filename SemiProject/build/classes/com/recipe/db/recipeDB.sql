@@ -43,6 +43,7 @@ UPDATE RECIPE_INFO SET VIEWS=0 WHERE VIEWS is null;
 
 --SELECT * FROM RECIPE_INFO ORDER BY RECIPE_ID ASC;
 
+
 -------------------레시피재료--------------------------------
 
 --DROP TABLE RECIPE_MATERIAL;

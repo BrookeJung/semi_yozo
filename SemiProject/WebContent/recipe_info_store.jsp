@@ -11,7 +11,7 @@
 <script type="text/javascript" src="js/storedb_info.js"></script>
 </head>
 <body>
-	<form action="recipeController.do" method="post">
+	<form action="RecipeController.do" method="post">
       <input type="hidden" name="command" value="storedb_info" />
       <input type="submit" value="db에 저장"/>
       <table>
