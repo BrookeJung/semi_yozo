@@ -9,6 +9,9 @@
 		alias="RecipeInfoDto"/>
 		<typeAlias type="com.refrigerator.dto.RefrigeratorDto" 
 		alias="RefrigeratorDto"/>
+		<typeAlias type="com.recipe_process.dto.RecipeProcessDto" 
+		alias="RecipeProcessDto"/>
+		
 		
 	</typeAliases>
 

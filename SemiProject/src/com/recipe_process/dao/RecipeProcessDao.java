@@ -1,11 +1,19 @@
 package com.recipe_process.dao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.recipe_info.dto.RecipeInfoDto;
 import com.recipe_process.dto.RecipeProcessDto;
 
 import common.JDBCTemplate;
@@ -102,4 +110,22 @@ public class RecipeProcessDao extends JDBCTemplate {
 		return res;
 	}
 
+	
+	public List<RecipeProcessDto> selectprocessview(int recipe_id) {//결과여러줄
+		String resource = "com/recipe/db/recipe-config.xml";
+		InputStream inputStream = null;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		List<RecipeProcessDto> processdto=session.selectList("recipe.mapper.selectprocessview",recipe_id);
+				
+	
+
+		return processdto;
+	}
 }

@@ -42,8 +42,8 @@ function getJson() {
 												"<td>"+str.STRE_STEP_IMAGE_URL+"</td>"+
 												"<td>"+str.STEP_TIP+"</td>"+
 												"<input type='hidden' name='recipe_process' value='"+
-												str.RECIPE_ID+"//"+str.COOKING_NO+"//"+str.COOKING_DC+"//"+
-												str.STRE_STEP_IMAGE_URL+"//"+str.STEP_TIP+"'>"+
+												str.RECIPE_ID+"※"+str.COOKING_NO+"※"+str.COOKING_DC+"※"+
+												str.STRE_STEP_IMAGE_URL+"※"+str.STEP_TIP+"'>"+
 												"</tr>"
 												
 									);

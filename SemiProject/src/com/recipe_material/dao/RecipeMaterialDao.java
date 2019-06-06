@@ -23,7 +23,7 @@ import com.recipe_material.dto.RecipeMaterialDto;
 import common.JDBCTemplate;
 
 public class RecipeMaterialDao extends JDBCTemplate {
-
+	//json db저장용
 	public int insert(List<RecipeMaterialDto> dtos) {
 		Connection con = getConnection();
 		PreparedStatement pstm = null;
@@ -69,7 +69,7 @@ public class RecipeMaterialDao extends JDBCTemplate {
 
 		return res;
 	}
-	
+	//재료 db저장할떄 리셋용
 	public int delete() {
 		Connection con = getConnection();
 		PreparedStatement pstm = null;
@@ -112,11 +112,30 @@ public class RecipeMaterialDao extends JDBCTemplate {
 		}
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
-		List<RecipeMaterialDto> list=session.selectList("recipe.mapper.selectList");
+		List<RecipeMaterialDto> list=session.selectList("recipe.mapper.selectList");//session.(자동완성)하면 인수를 받는 메소드가 잇고 없는 메소드가 잇음 메소드가 필요하면 위에서 parameter추가하고
+																					//selectList("",요기다가 파라미터써주면 mapper로 가져감) 값이 여러줄 나오면 무조건 .selectList 한줄만 나오면 .selectOne
+		//중복을 제거하기 위해서 다시 set에 담고 다시 list로 보내 리턴한다
 		Set<RecipeMaterialDto> set=new HashSet<RecipeMaterialDto>(list);
 		List<RecipeMaterialDto> list2=new ArrayList<RecipeMaterialDto>(set);
 
 		return list2;
+	}
+	public List<RecipeMaterialDto> selectmaterialview(int recipe_id) {//여러줄이니 List
+		String resource = "com/recipe/db/recipe-config.xml";
+		InputStream inputStream = null;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		List<RecipeMaterialDto> materiallist=session.selectList("recipe.mapper.selectmaterialview",recipe_id);
+		
+		
+
+		return materiallist;
 	}
 	
 }

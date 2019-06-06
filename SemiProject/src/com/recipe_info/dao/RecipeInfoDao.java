@@ -6,9 +6,10 @@ import java.io.InputStream;
 import java.sql.Connection;	
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -16,12 +17,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.recipe_info.dto.RecipeInfoDto;
-
+import com.recipe_material.dto.RecipeMaterialDto;
 
 import common.JDBCTemplate;
 
 public class RecipeInfoDao extends JDBCTemplate {
-	
+	//재료db저장용
 	public int insert(List<RecipeInfoDto> dtos) {
 		int res=0;
 		Connection con=getConnection();
@@ -75,6 +76,7 @@ public class RecipeInfoDao extends JDBCTemplate {
 		
 		return res;
 	}
+	//재료db초기화용
 	public int delete() {
 		int res=0;
 		Connection con=getConnection();
@@ -93,8 +95,7 @@ public class RecipeInfoDao extends JDBCTemplate {
 			close(con);
 		}
 		return res;
-	}
-	public RecipeInfoDto selectrecipeview() {
+	}public List<RecipeInfoDto> selectRecommend(String id) {//id받고 해당사용자의 냉장고db에 접근해야되기떄문에
 		String resource = "com/recipe/db/recipe-config.xml";
 		InputStream inputStream = null;
 		try {
@@ -105,11 +106,29 @@ public class RecipeInfoDao extends JDBCTemplate {
 		}
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
-		RecipeInfoDto dto=session.selectOne("recipe.mapper.selectrecipeview");
+		List<RecipeInfoDto> recommendrecip=session.selectList("recipe.mapper.selectrecommend",id);
+		//mapper에서 실행하면 냉장고 재료가 가장많이 포함된 recipeid 3개를 찾아서   그 해당 recipe_id의  select* 결과가 3줄쫙옴 그것을 리스트에 담는다.
+
+		return recommendrecip;
+	}
+	
+	
+	public RecipeInfoDto selectrecipeview(int recipe_id) {
+		String resource = "com/recipe/db/recipe-config.xml";
+		InputStream inputStream = null;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		RecipeInfoDto infodto=session.selectOne("recipe.mapper.selectrecipeview",recipe_id);//결과가 한줄이기떄문에 .selectOne
 				
 	
 
-		return dto;
+		return infodto;
 	}
 	
 	
