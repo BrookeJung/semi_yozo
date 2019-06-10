@@ -122,6 +122,26 @@
 		});
 	})
 </script>
+<script type="text/javascript">
+   function login(){
+       if(formLogin.id.value === ""){
+            alert("아이디를 입력해주세요");
+            formLogin.id.focus();
+       }else{
+          if(formLogin.pw.value === ""){
+            alert("비밀번호를 입력해주세요");
+            formLogin.pw.focus();
+            
+       }
+          
+       else{
+          formLogin.action ="loginController.do?command=login";
+          formLogin.method="post";
+          formLogin.submit();
+       }    
+       }
+   }
+</script>
 
 </head>
 <body class="page1">
@@ -148,7 +168,8 @@
 	<div class="content">
 
 		<form id="formLogin" name="formLogin" method="post"
-			action="로그인컨트롤러로가자">
+			action="logincontroller.do">
+			<input type="hidden" name="command" value="login">
 			<div class="wrapper">
 				<div class="header">
 					<!--  <h1><img src="images/logo.png" width="300" height="100" alt="로그인"></h1> -->
@@ -171,7 +192,7 @@
 								</div>
 								<p class="loginMsg d_msgError"></p>
 								<div class="btLogin">
-									<button type="button" class="button01" id="btnLogin"
+									<button type="submit" class="button01" id="btnLogin"
 										a2s="click" obj="P_LOGIN"
 										opt="{&quot;Name&quot;:&quot;IDLogIn&quot;}">
 										<span>YoriJori 로그인</span>
@@ -202,21 +223,15 @@
 									width="440" height="12" alt="또는">
 							</p>
 							<a href="페북" id="btnLogin3" class="btLoginFacebook" a2s="click"
-								obj="P_LOGIN"
-								opt="{&quot;Name&quot;:&quot;TPALoginfacebook&quot;}"><img
-								src="https://ssl.nx.com/S2/p3/login/2016/bt_facebook1.gif"
-								width="440" height="52" alt="Facebook 로그인"></a> 
-								
-							<a href="kakaologin.jsp" id="btnLogin4" class="kakao-login-btn"
-								a2s="click" obj="P_LOGIN" opt="{&quot;Name&quot;:&quot;TPALogingoogle&quot;}"><img
-								src="images/KAKAOLOGIN.png" width="440" height="52"
-								alt="kakao 로그인"></a> 
-								
-							<a href="네이버" id="btnLogin5"
-								class="btLoginNaver" a2s="click" obj="P_LOGIN"
-								opt="{&quot;Name&quot;:&quot;TPALoginnaver&quot;}"><img
-								src="https://ssl.nx.com/S2/p3/login/2016/bt_naver1.gif"
-								width="440" height="52" alt="Naver 로그인"></a>
+                        obj="P_LOGIN"
+                        opt="{&quot;Name&quot;:&quot;TPALoginfacebook&quot;}"><img
+                        src="https://ssl.nx.com/S2/p3/login/2016/bt_facebook1.gif"
+                        width="440" height="52" alt="Facebook 로그인"></a> 
+                        <a id="kakao-login-btn"></a> <a href="http://developers.kakao.com/logout"></a> 
+                        <a href="네이버" id="btnLogin5" class="btLoginNaver" a2s="click" obj="P_LOGIN"
+                        opt="{&quot;Name&quot;:&quot;TPALoginnaver&quot;}"><img
+                        src="https://ssl.nx.com/S2/p3/login/2016/bt_naver1.gif"
+                        width="440" height="52" alt="Naver 로그인"></a>
 						</div>
 					</div>
 
@@ -253,5 +268,32 @@
         ); 
       }) 
     </script>
+    
 </body>
+<script type='text/javascript'>
+   
+   Kakao.init('97eb7d02c879e76c46e49f5c9af2b2be');
+   
+   // 카카오 로그인 버튼을 생성합니다.
+   Kakao.Auth.createLoginButton({
+     container: '#kakao-login-btn',
+     success: function(authObj) {
+        Kakao.API.request({
+           url: '/v1/user/me',
+           success: function(info){
+              /*alert(JSON.stringify(info));*/              
+              alert(info.properties.nickname+'님 로그인되었습니다.');
+              location.href="mainloginboard.jsp";
+           },
+           fail: function(error){
+              alert(JSON.stringify(err));
+           }
+        });
+     },
+     fail: function(err) {
+     alert(JSON.stringify(err));
+     }
+   });
+    
+  </script>
 </html>S

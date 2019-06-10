@@ -31,7 +31,10 @@
 	%>
 
 	<table border="1">
-		
+	
+		<tr>
+			<td><input type="text" name="id"></td>
+		</tr>	
 		<tr>
 			<td><%=idnotused.equals("true")?"사용이 가능 한 ID 입니다." : "이미 가입 된 아이디 입니다." %></td>
 		</tr>

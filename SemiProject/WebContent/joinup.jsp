@@ -17,6 +17,7 @@
 <!-- 주소 입력받을 수 있는 daum api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+
 	$(document).ready(function() {
 		$(".block1").mouseover(function() {
 			$(this).addClass("blur");
@@ -29,7 +30,7 @@
 		});
 	})
 	
-	
+	var emailCode = "";
 	function idChk(){
 		var doc = document.getElementsByName("id")[0];
 		if(doc.value.trim()==""||doc.value==null){
@@ -80,7 +81,8 @@
 		         url:"mailController.do?command=mail&email="+encodeURIComponent(getParameterValues()),
 		         type:'GET',
 		         success:function(code){
-		            alert(code+"인증메일이 발송되었습니다.");
+		            alert("인증메일이 발송되었습니다.");
+		            emailCode = code;
 		         },
 		         error:function(){
 		            alert("실패");
@@ -88,6 +90,18 @@
 		      });
 		   });
 		});
+	function codeChk(){
+		   var doc = document.getElementsByName("email_chk")[0];
+		   if(doc.value.trim()=="" || doc.value==null){
+		      alert("인증번호를 입력해 주세요");
+		   }else if(doc.value === emailCode){
+		      document.getElementById("samesame").innerHTML="인증번호가 일치합니다";
+		      document.getElementById("samesame").style.color="blue";
+		   }else if(doc.value !== emailCode){
+		      document.getElementById("samesame").innerHTML="인증번호가 일치하지 않습니다";
+		      document.getElementById("samesame").style.color="red";
+		   }
+		}
 	
 </script>
 
@@ -159,7 +173,8 @@
 				<p>
 				<div align="center">
 					<input type="text" name="email_chk" required="required" placeholder="인증번호 입력(유효시간 5분)"
-						style="width:100%; height: 30px;">
+						style="width:100%; height: 30px;" onchange="codeChk()">
+						<span id="samesame"></span>
 				</div>
 				<p>
 				<div style="width: 100%; height: 70px;">
