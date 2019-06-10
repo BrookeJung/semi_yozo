@@ -19,6 +19,8 @@ import com.recipe_material.dao.RecipeMaterialDao;
 import com.recipe_material.dto.RecipeMaterialDto;
 import com.recipe_process.dao.RecipeProcessDao;
 import com.recipe_process.dto.RecipeProcessDto;
+import com.refrigerator.dao.RefrigeratorDao;
+import com.refrigerator.dto.RefrigeratorDto;
 
 
 @WebServlet("/RecipeController.do")
@@ -30,24 +32,21 @@ public class RecipeController extends HttpServlet {
     	
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html; charset=UTF-8");
 	    
 	    String command = request.getParameter("command");
+	    //커맨드 체크용 추후 삭제
 	    System.out.println("<" + command + ">");
-	    
-	    
-	    
-	    
+
 	    //레시피정보 테이블에 저장
 	    if(command.equals("start_info")) {
 	    	response.sendRedirect("recipe_info_store.jsp");
 	    }//레시피 재료 테이블에 저장
 	    else if(command.equals("start_material")) {
 	    	response.sendRedirect("recipe_material_store.jsp");
-	    }//본격저장(정보)
+	    }//본격저장(레시피정보)
 	    else if(command.equals("storedb_info")){
 	    	RecipeInfoDao dao=new RecipeInfoDao();
 	    	String[] recipeList=request.getParameterValues("recipe");
@@ -82,7 +81,8 @@ public class RecipeController extends HttpServlet {
 	    	}
 			
 	    	response.sendRedirect("mainhomepage.jsp");
-	    }//본격저장(재료)
+	    }
+	    //본격저장(재료)
 	    else if(command.equals("storedb_material")){
 			RecipeMaterialDao dao = new RecipeMaterialDao();
 			String [] RecipeList = request.getParameterValues("recipe_material");
@@ -108,43 +108,26 @@ public class RecipeController extends HttpServlet {
 			response.sendRedirect("mainhomepage.jsp");
 
 	    }
-	    else if(command.equals("myrefrigerator")) {
-	    	RecipeMaterialDao materialdao=new RecipeMaterialDao();
-	    	List<RecipeMaterialDto> list=materialdao.selectList();
-	    	request.setAttribute("list", list);
-	    	dispatch(request, response,"myrefrigerator.jsp");
-	    }else if(command.equals("recipeinfoview")) {
-	    	RecipeInfoDao infodao=new RecipeInfoDao();
-	    	
-	    	RecipeInfoDto dto=infodao.selectrecipeview();
-	    	request.setAttribute("dto", dto);
-	    	dispatch(request, response,"recipeinfoview.jsp");
-	    	
-	    	
-	    	
-	    }else if (command.equals("start_process")) {
+	    //레시피과정 저장
+	    else if (command.equals("start_process")) {
 			response.sendRedirect("recipe_process_store.jsp");
 		}
-//			레시피 과정값 전달
+	    //본격저장(레시피과정)
 		else if (command.equals("storedb_process")) {
-//				DAO호출
+
 			RecipeProcessDao dao = new RecipeProcessDao();
 
-//				recipe_process.js에서 tbody값들을 리스트에 담아준다.
 			String[] RecipePList = request.getParameterValues("recipe_process");
 			List<RecipeProcessDto> list = new ArrayList<RecipeProcessDto>();
 
-//				담아오는 값만큼 테이블 실행하고 콘솔창에 출력
 			for (int i = 0; i < RecipePList.length; i++) {
 				System.out.println(RecipePList[i]);
 
-//					tbody에 받아오는 값들을 "/" 나눠서 집어넣는다.
-				String[] recipeProcess = RecipePList[i].split("//");
-//					DTO(파라미터) 호출
+				String[] recipeProcess = RecipePList[i].split("※");
+
 				RecipeProcessDto dto = new RecipeProcessDto(Integer.parseInt(recipeProcess[0]), Integer.parseInt(recipeProcess[1]),
 						recipeProcess[2], recipeProcess[3], recipeProcess[4]);
 
-//				 	list에 dto값들을 넣어준다.
 				list.add(dto);
 			}
 
@@ -159,10 +142,108 @@ public class RecipeController extends HttpServlet {
 			response.sendRedirect("mainhomepage.jsp");
 
 		}
+	    
+	    //냉장고에 재료넣기 
+	    else if(command.equals("myrefrigerator")) {
+	    	//mainhomepage로부터 온 id
+	    	String id=request.getParameter("fakeid");//
+	    	//myrefrigerator.jsp에 있는 데이터리스트 태그안에 들어갈 모든 재료를 생성하기 위함
+	    	RecipeMaterialDao materialdao=new RecipeMaterialDao();
+	    	List<RecipeMaterialDto> list=materialdao.selectList();
+	    	
+	    	//dispatch로 보낼 myrefrigerator.jsp 이곳에서 ${요기안에다 쓰려고} setattribute  
+	    	request.setAttribute("list", list);
+
+	    	dispatch(request, response,"myrefrigerator.jsp");
+	    }
+	    
+	    //냉장고테이블에 사용자가 선택한 재료들 추가
+	    else if(command.equals("insertmyrefrigeratordb")) {
+	    	String[] material=request.getParameterValues("realvalue");//히든으로 넘어온  realvalue 배열로 받음
+	    	String id=request.getParameter("fakeid");//히든으로 넘어온 id
+
+	    	for(int i=0;i<material.length;i++){//sql문을 추가될 재료 갯수만큼 실행해야하기때문에 for문 이용
+	    		RefrigeratorDto dto=new RefrigeratorDto(id,material[i]);//id-i번쨰 재료 이게 한줄 
+	    		RefrigeratorDao dao=new RefrigeratorDao();
+	    		dao.insertRefrigerator(dto);
+	    	}
+	    	//db저장완료
+	    	
+	    	//냉장고재료보여주기
+	    		RefrigeratorDao myrefrigeratordao=new RefrigeratorDao();
+		    	List<RefrigeratorDto> myrefrigerator=myrefrigeratordao.selectRefrigeratorList(id);//위에서 받아온 id 파라미터로 던짐
+		    	request.setAttribute("myrefrigerator", myrefrigerator);
+	    
+	    	
+	    	dispatch(request, response,"myrefrigeratorlist.jsp");
+	    	
+	    }else if(command.equals("recommend_refri_recipe")) {
+	    	String id=request.getParameter("fakeid");//히든아이디 또받고
+	    	RecipeInfoDao infodao=new RecipeInfoDao();
+	    	List<RecipeInfoDto> recommendrecipe=infodao.selectRecommend(id);//아이디보내주고,요리3가지 보여주기
+	    	request.setAttribute("recommendrecipe", recommendrecipe);//속성 set하고
+	    	
+	    	dispatch(request, response,"recommendrefrirecipe.jsp");
+	    	
+	    }else if(command.equals("recommenddetail")) {
+	    	
+	    	int recipe_id=Integer.parseInt(request.getParameter("recommendrecipeid"));//해당recipe_id의 정보, 재료, 과정을 보기위해서 받아와서 던져줌 
+	    	RecipeProcessDao processdao=new RecipeProcessDao();
+	    	List<RecipeProcessDto> processlist=processdao.selectprocessview(recipe_id); 
+	    	
+	    	RecipeMaterialDao materialdao=new RecipeMaterialDao();
+	    	List<RecipeMaterialDto> materiallist=materialdao.selectmaterialview(recipe_id);
+	    	
+	    	RecipeInfoDao infodao=new RecipeInfoDao();
+	    	RecipeInfoDto infolist=infodao.selectrecipeview(recipe_id);//한줄만 출력되기떄문에 List가 아니라 그냥 객체
+	    	
+	    	request.setAttribute("infolist", infolist);
+	    	request.setAttribute("materiallist", materiallist);
+	    	request.setAttribute("processlist", processlist);
+	    	
+	    	dispatch(request, response, "recommenddetail.jsp");
+	    	
+	    	
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+//	    else if(command.equals("recipeinfoview")) {
+//	    	RecipeInfoDao infodao=new RecipeInfoDao();
+//	    	RecipeInfoDto infodto=infodao.selectrecipeview();
+//	    	
+//	    	request.setAttribute("infodto", infodto);
+//	    	
+//	    	dispatch(request, response,"recipeinfoview.jsp");
+//	    }
+//	    else if(command.equals("recipeprocessview")) {
+//	    	RecipeProcessDao processdao=new RecipeProcessDao();
+//	    	List<RecipeProcessDto> processlist=processdao.selectprocessview(); 
+//	    	
+//	    	RecipeMaterialDao materialdao=new RecipeMaterialDao();
+//	    	List<RecipeMaterialDto> materiallist=materialdao.selectmaterialview();
+//	    	
+//	    	request.setAttribute("materiallist", materiallist);
+//	    	request.setAttribute("processlist", processlist);
+//	    	
+//	    	dispatch(request, response, "recipeprocessview.jsp");
+//	    }
+//	    else if(command.equals("myrefrigeratorlist")) {
+//    	String id=request.getParameter("fakeid");
+//    	
+//    	RefrigeratorDao myrefrigeratordao=new RefrigeratorDao();
+//    	List<RefrigeratorDto> myrefrigerator=myrefrigeratordao.selectRefrigeratorList(id);
+//    	request.setAttribute("myrefrigerator", myrefrigerator);
+//    }
 	   
 	    
 	    
 	    }
+	
 	    ///////////////////////////////////////////
 	    	
 	    	
