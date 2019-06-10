@@ -1,9 +1,10 @@
 package com.user_login.biz;
 
+import java.io.IOException;
 import java.util.List;
 
-import com.user_login.LoginDao;
-import com.user_login.LoginDto;
+import com.user_login.dao.LoginDao;
+import com.user_login.dto.LoginDto;
 
 public class LoginBiz {
 	
@@ -15,13 +16,10 @@ public class LoginBiz {
 	public List<LoginDto> seleList(){
 		return dao.selectlist();
 	}
-	public LoginDto idChk(String id) {
-		return dao.idChk(id);
-	}
 	public LoginDto selectOne(int seq) {
 		return dao.selectOne(seq);
 	}
-	public int user_insert(LoginDto dto) {
+	public int user_insert(LoginDto dto) throws IOException {
 		return dao.user_insert(dto);
 	}
 	public int user_update(LoginDto dto) {
@@ -30,5 +28,10 @@ public class LoginBiz {
 	public int user_delete(int seq) {
 		return dao.user_delete(seq);
 	}
+	
+	public LoginDto idChk(String id) {
+		return dao.idChk(id);
+	}
+	
 
 }

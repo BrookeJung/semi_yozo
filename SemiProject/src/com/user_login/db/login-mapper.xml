@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="LoginDto">
-		SELECT * FROM LOGIN WHERE SEQ=#{seq}
+		SELECT * FROM LOGIN WHERE SEQ=#{sep}
 	
 	</select>
 	
@@ -23,7 +23,7 @@
 	
 	<insert id="user_insert" parameterType="LoginDto">
 		INSERT INTO LOGIN
-		VALUES(LOGINSEQ.NEXTVAL,#{name},#{id},#{pw},#{addr},#{email})
+		VALUES(LOGINSEQ.NEXTVAL,#{name},#{id},#{pw},#{email},#{addr})
 	</insert>
 	
 	<update id="user_update" parameterType="int">
@@ -32,7 +32,6 @@
 	
 	<delete id="user_delete" parameterType="int">
 		DELETE FROM LOGIN WHERE SEQ=#{seq}
-	
 	</delete>
 	
 	

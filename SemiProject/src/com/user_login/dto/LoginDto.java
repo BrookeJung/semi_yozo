@@ -1,29 +1,30 @@
 package com.user_login.dto;
 
-import java.util.Date;
-
 public class LoginDto {
 
 	private int seq;
 	private String name;
 	private String id;
 	private String pw;
-	private String addr;
 	private String email;
+	private String addr;
+
 
 	
 	public LoginDto() {
 		
 	}
 
-	public LoginDto(int seq, String name, String id, String pw, String addr, String email) {
+	public LoginDto(int seq, String name, String id, String pw,  String email ,String addr) {
 		super();
 		this.seq = seq;
 		this.name = name;
 		this.id = id;
 		this.pw = pw;
-		this.addr = addr;
 		this.email = email;
+		this.addr = addr;
+		
+
 
 	}
 
@@ -74,5 +75,7 @@ public class LoginDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 	
 }

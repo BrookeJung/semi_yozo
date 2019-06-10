@@ -1,4 +1,4 @@
-package com.user_login.dao;
+package com.db;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,17 +11,13 @@ public class SqlMapConfig {
 	
 	private SqlSessionFactory sqlSessionFactory;
 	
-	public SqlSessionFactory getSqlSessionFactory() {
+	public SqlSessionFactory getSqlSessionFactory() throws IOException {
 		
 		String resource = "com/db/login-config.xml";
 		
-		try {
 			Reader reader = Resources.getResourceAsReader(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 		
 		return sqlSessionFactory;
 	}
