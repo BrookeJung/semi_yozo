@@ -90,12 +90,12 @@
 				<div class="menu_block">
 
 
-					   <nav id="bt-menu" class="bt-menu">
+   <nav id="bt-menu" class="bt-menu">
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
         <ul>
           <li class="current bt-icon "><a href="mainboard.jsp">Home</a></li>
-         <li class="bt-icon"><a href="#">재료등록</a></li>
-         <li class="bt-icon"><a href="#">레시피</a></li>
+         <li class="bt-icon"><a href="RecipeController.do?command=myrefrigerator&fakeid=fake">재료등록</a></li>
+         <li class="bt-icon"><a href="RecipeController.do?command=allrecipe">레시피</a></li>
          <li class="bt-icon"><a href="write.jsp">레시피등록</a></li>
          <li class="bt-icon"><a href="#">Q&A</a></li>
          <li class="bt-icon"><a href="mypage.jsp">마이페이지</a></li>	

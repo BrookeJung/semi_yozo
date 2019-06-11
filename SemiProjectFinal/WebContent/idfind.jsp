@@ -78,22 +78,22 @@ function checkEmail() {
  <header> 
   <div class="container_12">
    <div class="grid_12"> 
-    <div class="socials">
-       <a id="log" href="login.html"><img alt="login" src="images/login.png"></a> 
+    <div class="grid_12" style="margin-top: 5%">
+      
     </div>
-    <h1><a id="logo" href="index.html"><img src="images/logo.png" alt="Boo House"></a> </h1>
+    <h1><a id="logo" href="mainboard.jsp"><img src="images/logo.png" alt="Boo House"></a> </h1>
     <div class="menu_block">
 
 
-  <nav id="bt-menu" class="bt-menu">
+   <nav id="bt-menu" class="bt-menu">
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
         <ul>
-          <li class="current bt-icon "><a href="MainBoard.jsp">Home</a></li>
-         <li class="bt-icon"><a href="#">재료등록</a></li>
-         <li class="bt-icon"><a href="#">레시피</a></li>
+          <li class="current bt-icon "><a href="mainboard.jsp">Home</a></li>
+         <li class="bt-icon"><a href="RecipeController.do?command=myrefrigerator&fakeid=fake">재료등록</a></li>
+         <li class="bt-icon"><a href="RecipeController.do?command=allrecipe">레시피</a></li>
          <li class="bt-icon"><a href="write.jsp">레시피등록</a></li>
-         <li class="bt-icon"><a href="PurchaseList.jsp">게시판</a></li>
-         <li class="bt-icon"><a href="MyPage.jsp">나의페이지</a></li>	
+         <li class="bt-icon"><a href="#">Q&A</a></li>
+         <li class="bt-icon"><a href="mypage.jsp">마이페이지</a></li>	
         </ul>
       </nav>
     
@@ -150,7 +150,7 @@ function checkEmail() {
 	<footer>    
   <div class="container_12">
     <div class="grid_6 prefix_3">
-      <a id="logo" href="index.html" class="f_logo"><img src="images/logo.png" alt=""></a>
+      <a id="logo" href="mainboard.jsp" class="f_logo"><img src="images/logo.png" alt=""></a>
       <div class="copy">
       &copy; 2019 | <a href="#">YOLIJOLI_Recipe</a> <br> Website  by <a href="http://www.templatemonster.com/" rel="nofollow">KH_yolijoli</a>
       </div>

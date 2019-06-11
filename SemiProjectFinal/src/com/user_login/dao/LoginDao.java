@@ -1,5 +1,6 @@
 package com.user_login.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,13 +82,13 @@ public class LoginDao extends SqlMapConfig{
 			session = getSqlSessionFactory().openSession();
 			dto = session.selectOne(namespace + "idSearch", idSearch);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 
 		return dto;
 	}
+	
 	public LoginDto login(String id, String pw ) {
 		Map<String, String> login = new HashMap<String, String>();
 		login.put("id", id);
@@ -97,7 +98,7 @@ public class LoginDao extends SqlMapConfig{
 		
 		try {
 			session=getSqlSessionFactory().openSession();
-			dto = session.selectOne(namespace+"login"+login);
+			dto = session.selectOne(namespace+"login",login);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

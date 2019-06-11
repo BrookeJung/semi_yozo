@@ -135,7 +135,7 @@
        }
           
        else{
-          formLogin.action ="loginController.do?command=login";
+          formLogin.action ="logincontroller.do?command=login";
           formLogin.method="post";
           formLogin.submit();
        }    
@@ -149,10 +149,8 @@
 	<!--==============================header=================================-->
  <header> 
   <div class="container_12">
-   <div class="grid_12"> 
-    <div class="socials">
-       <a id="log" href="login.html"><img alt="login" src="images/login.png"></a> 
-    </div>
+   <div class="grid_12" style="margin-top: 5%">
+    
     <h1><a id="logo" href="mainboard.jsp"><img src="images/logo.png" alt="Boo House"></a> </h1>
     <div class="menu_block">
     
@@ -183,11 +181,11 @@
 									<span>yorijori 로그인 </span>
 								</legend>
 								<div class="id">
-									<input type="text" id="txtNexonID" class="input01"
+									<input type="text" name="id" class="input01"
 										placeholder="요리조리ID(아이디&nbsp;또는&nbsp;이메일)를&nbsp;입력해주세요.">
 								</div>
 								<div class="pass">
-									<input type="password" id="txtPWD" class="input01"
+									<input type="password" name="pw" class="input01"
 										placeholder="비밀번호를 입력해주세요.">
 								</div>
 								<p class="loginMsg d_msgError"></p>
@@ -203,17 +201,14 @@
 						<p class="loginMenu">
 							<a href="idfind.jsp" a2s="click" obj="P_LOGIN"
 								opt="{&quot;Name&quot;:&quot;IDSearch&quot;}"
-								onclick="NgbMember.SearchNexonID( 1 ); return false;"
 								class="schId">YoriJori ID 찾기</a> <span>|</span> 
 								<a href="pwfind.jsp"
 								a2s="click" obj="P_LOGIN"
 								opt="{&quot;Name&quot;:&quot;PWSearch&quot;}"
-								onclick="NgbMember.SearchPassword( 1 ); return false;"
 								class="schPass">비밀번호 찾기</a> <span>|</span> 
-								<a href="logincontroller.do?command=joininsertform"
+								<a href="logincontroller.do?command=snsjoinform
 								a2s="click" obj="P_LOGIN"
 								opt="{&quot;Name&quot;:&quot;Join&quot;}"
-								onclick="$.movePage( 'https://member.nexon.com/join/join.aspx' ); return false;"
 								class="join">YoriJori 회원가입</a>
 
 						</p>

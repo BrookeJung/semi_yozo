@@ -13,7 +13,7 @@ public class LoginBiz {
 	public LoginDto login(String id, String pw) {
 		return dao.login(id, pw);
 	}
-	public List<LoginDto> selectList(){
+	public List<LoginDto> seleList(){
 		return dao.selectlist();
 	}
 	public LoginDto idSearch(String name, String email) {
