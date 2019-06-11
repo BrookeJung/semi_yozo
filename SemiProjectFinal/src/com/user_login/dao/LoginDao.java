@@ -69,7 +69,25 @@ public class LoginDao extends SqlMapConfig{
 		return idnotused;
 		
 	}
-	
+	public LoginDto idSearch(String name, String email) {
+
+		Map<String, Object> idSearch = new HashMap<String, Object>();
+		idSearch.put("name", name);
+		idSearch.put("email", email);
+		SqlSession session = null;
+		LoginDto dto = new LoginDto();
+
+		try {
+			session = getSqlSessionFactory().openSession();
+			dto = session.selectOne(namespace + "idSearch", idSearch);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		return dto;
+	}
 	public LoginDto login(String id, String pw ) {
 		Map<String, String> login = new HashMap<String, String>();
 		login.put("id", id);

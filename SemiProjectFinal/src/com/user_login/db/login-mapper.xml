@@ -20,7 +20,9 @@
 		SELECT ID FROM LOGIN WHERE ID=#{id}
 	
 	</select>
-	
+	<select id="idSearch" parameterType="map" resultType="LoginDto">
+		SELECT ID FROM LOGIN WHERE NAME=#{name} AND EMAIL=#{email}
+	</select>
 	<insert id="user_insert" parameterType="LoginDto">
 		INSERT INTO LOGIN
 		VALUES(LOGINSEQ.NEXTVAL,#{name},#{id},#{pw},#{email},#{addr})
