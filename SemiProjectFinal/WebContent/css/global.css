@@ -1,0 +1,180 @@
+@charset "utf-8";
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, big, cite, code, img, ins, kbd, q, s, samp, small, strike, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body {line-height:1;}
+ol, ul {list-style:none;}
+table {border-collapse:collapse;border-spacing:0;}
+ 
+html {overflow-y:scroll;}
+body, html {width:100%;}
+body, textarea, select, input, button {font:12px "돋움","dotum","Trebuchet MS","Lucida Grande","Tahoma","Helvetica","Arial",sans-serif;color:#666666;}
+a {color:#666666;text-decoration:none;}
+a:hover {color:#666666;text-decoration:none;}
+a.link {display:inline-block;height:21px;padding:10px 12px 0 13px;font-weight:bold;border:1px solid #cfcfcf;background:#f2f2f2 url(https://ssl.nx.com/S2/membership/global/bg_bt.gif) repeat-x left top;}
+a.link span {float:none;padding:0 5px 0 0;background:url(https://ssl.nx.com/S2/membership/icon/bul_tri_bl.gif) no-repeat right 3px;}
+.inputTxt {width:316px;height:26px;padding:11px 0 0 9px;color:#333333;font-size:16px;background-color:#eaf0fe;border:1px solid #c0cbeb;}
+.inputTxtWm {color:#999999;}
+.inputTxtdisable {color:#999999;border-color:#e2e2e2;background-color:#f8f8f8;}
+.scroll {scrollbar-arrow-color:#000000;scrollbar-track-color:#f2f2f2;scrollbar-face-color:#d9d9d9;scrollbar-highlight-color:#d9d9d9;scrollbar-3dlight-color:#d9d9d9;scrollbar-shadow-color:#d9d9d9;scrollbar-darkshadow-color:#d9d9d9;}
+button {border:0;padding:0;background:transparent;cursor:pointer;*overflow:visible;}
+button::-moz-focus-inner {padding:0;border:0;}
+button.bLink {display:inline-block;padding:10px 12px 7px 13px;font-weight:bold;border:1px solid #cfcfcf;background:#f2f2f2 url(https://ssl.nx.com/S2/membership/global/bg_bt.gif) repeat-x left top;}
+button.bLink span {float:none;padding:0 5px 0 0;background:url(https://ssl.nx.com/S2/membership/icon/bul_tri_bl.gif) no-repeat right 3px;}
+caption, .hiddenTit, #contents h2.hiddenTit, legend, .hidden {visibility:hidden;width:0;height:0;overflow:hidden;font-size:0;line-height:0;padding:0;}
+/* input button 
+.inputButton {height:33px;padding:3px 10px 0 11px;vertical-align:top;font-weight:bold;text-align:center;border:1px solid #cfcfcf;cursor:pointer;background:#f2f2f2 url(https://ssl.nx.com/S2/membership/global/bg_bt.gif) repeat-x left top;line-height:1;*overflow:visible;}
+*/
+
+button, input {outline:none;}
+
+/* radio */
+.radioSec input {position:absolute;top:-3px;left:-3px;width:1px;height:1px;}
+.radioSec label {display:inline-block;padding:0px 0 6px 25px;min-height:16px;background:url(https://ssl.nx.com/S2/membership/2011/global/img_radio.png) no-repeat left top;cursor:pointer;}
+.radioSec input[type="radio"]:checked + label {background:url(https://ssl.nx.com/S2/membership/2011/global/img_radio_on.png) no-repeat left top;}
+
+/* checkbox */
+.checkboxSec input, .checkboxSec2 input {position:absolute;top:-3px;left:-3px;width:0px;height:0px;-moz-appearance: none;}
+.checkboxSec label {display:inline-block;padding:3px 0 6px 25px;min-height:16px;background:url(https://ssl.nx.com/S2/membership/2011/global/img_check.png) no-repeat left top;cursor:pointer;}
+.checkboxSec input[type="checkbox"]:checked + label {background:url(https://ssl.nx.com/S2/membership/2011/global/img_check_on.png) no-repeat left top;}
+.checkboxSec2 label {display:inline-block;padding:0px 0 6px 36px;min-height:16px;background:url(https://ssl.nx.com/S2/membership/2011/global/img_check2.png) no-repeat left 1px;cursor:pointer;}
+.checkboxSec2 input[type="checkbox"]:checked + label {background:url(https://ssl.nx.com/S2/membership/2011/global/img_check2_on.png) no-repeat left 1px;}
+
+/* input */
+.inputCnts .inputMsg, .inputCnts .errorMsg, .inputCnts .successMsg {clear:both;margin-bottom:-5px;padding-top:7px;line-height:1.6;}
+.inputCnts .inputMsg, .inputCnts .inputMsg a {color:#999999;}
+.inputCnts .inputMsg a.link2 {color:#6e81df;text-decoration:underline;}
+.inputCnts .errorMsg, .inputCnts .errorMsg a {color:#f2685b;}
+.inputCnts .errorMsg a {display:inline-block;padding-right:6px;background:url(https://ssl.nx.com/S2/membership/2011/icon/bul_arr_rd.gif) no-repeat right 5px;text-decoration:underline;}
+.inputCnts .successMsg {color:#6e81df;}
+.inputCnts .inputWrap {overflow:hidden;width:429px;background-color:#eaf0fe;border:1px solid #cccccc;}
+.inputCnts .focusWrap {border-color:#000000;}
+.inputCnts .errorInput {border-color:#f2685b;}
+.inputCnts .successInput {border-color:#6e81df;}
+.inputCnts .inputWrap .inputTxtSec {float:left;}
+.inputCnts .inputWrap .inputTxtSec input {display:block;width:330px;padding:18px 0 16px 18px;color:#000000;font-size:14px;border:0;background-color:#eaf0fe;}
+.inputCnts .inputWrap .inputTxtSec input[type=text]::-ms-clear {display:none;}
+.inputCnts .inputWrap .inputTxtSec input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */ color: #999999; opacity: 1; /* Firefox */}
+.inputCnts .inputWrap .inputTxtSec input:-ms-input-placeholder { /* Internet Explorer 10-11 */ color: #999999;}
+.inputCnts .inputWrap .inputTxtSec input:-ms-input-placeholder { /* Microsoft Edge */ color: #999999;}
+.inputCnts .inputWrap .inputAlertSec {position:relative;float:right;width:80px;}
+.inputCnts .inputWrap .inputAlertSec .delBt {position:absolute;top:20px;right:18px;}
+.inputCnts .inputWrap .inputAlertSec .delBt button {display:inline-block;width:11px;height:11px;background:#eaf0fe url(https://ssl.nx.com/S2/membership/2011/button/bt_delete.gif) no-repeat left top;bt_delete2;vertical-align:top;}
+.inputCnts .inputWrap .inputAlertSec .inputErr, .inputCnts .inputWrap .inputAlertSec .inputSuccess {position:absolute;top:17px;right:18px;width:52px;padding-top:3px;background-color:#eaf0fe;text-align:right;font-weight:bold;z-index:10;}
+.inputCnts .inputWrap .inputAlertSec .inputErr {color:#f2685b;}
+.inputCnts .inputWrap .inputAlertSec .inputSuccess {color:#6e81df;}
+.inputCnts .inputWrap .inputAlertSec .inputSuccess img {vertical-align:top;}
+
+/* skip navigation */
+.skipNav {height:1px;width:1px;margin:0 -1px -1px 0;}
+   .skipNav a {display:block;height:1px;width:1px;padding:0;overflow:hidden;font-size:0;line-height:0;}
+   .skipNav a:hover, .skipNav a:active, .skipNav a:focus {position:absolute;top:0;left:0;height:auto;width:auto;margin:0;padding:5px 20px;font-size:12px;line-height:1;background-color:#ffffff;color:#000000;z-index:100000;}
+
+/* layout */
+.wrapper {width:100%;}
+#contents h2 {height:67px;padding:43px 0 0 0;}
+#contents h2 img {display:block;margin-left:10px;}
+
+/* popup */
+.popup h1 {height:29px;padding:18px 0 0 18px;color:#000000;font-size:16px;border-bottom:1px solid #bfbfbf;}
+.popup .contents {padding-left:18px;}
+
+
+/* layer popup */
+.dimmed {position:fixed;top:0;left:0;display:block;width:100%;height:100%;background-color:#333333;z-index:2;display:block;opacity:0.75;filter:alpha(opacity=75);}
+.layerPopup {position:relative;border:3px solid #333333;background-color:#ffffff;z-index:200;}
+.layerPopup h2 {height:30px;padding:18px 0 0 17px;font-size:16px;color:#000000;background:url(https://ssl.nx.com/S2/membership/2011/global/bg_layertit.gif) repeat-x left top;}
+.layerPopup .closeBt {position:absolute;top:13px;right:12px;}
+.layerPopup .layerPopupBt {clear:both;text-align:center;}
+.layerPopup .layerPopupBt img {margin:0 4px;}
+
+/* layer alert */
+.layerBg {position:absolute;width:100%;height:100%;background-color:#000000;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter: alpha(opacity=50);opacity: .5;z-index:100;}
+.layer1 {position:absolute;border:2px solid #333333;color:#666666;background-color:#ffffff;z-index:200;}
+	.layer1 .btClose {position:absolute;top:13px;right:3px;width:23px;height:23px;}
+.layerAlert .contents {padding:34px 20px 10px;text-align:center;}
+	.layerAlert .contents .msg {display:inline-block;line-height:18px;}
+.layer1 .contents {padding:38px 30px 25px;}
+.layer1 .msg .txtType1 {color:#333333;font-weight:bold;}
+.layer1 .msg .txtType2 {color:#999999;}
+.layer1 .msg .txtType3 {text-align:left;display:block;}
+.layer1 .bt {padding:15px 0 1px;}
+.layer1 .bt img {margin:0 2px;}
+.layerDaum2 {width:400px;height:160px;}
+.layerDaum2 .contents {padding-top:35px;}
+.layerDaum2 .contents .bt img {margin:0 2px;}
+.layerDaumLoading {width:581px;height:468px;font-size:16px;font-weight:bold;color:#333333;}
+.layerDaumLoading span {display:block;text-align:center;line-height:18px;}
+.layerDaumLoading .loadingImg {height:112px;margin-top:130px;}
+.layerDaumLoading .loadingTxt {padding-bottom:12px;line-height:26px;}
+.layerDaumLoading .loadingTxt strong {color:#6f81f3;}
+/* Daum메일 도메인 선택 */
+.layerDaumDomain {width:581px;height:468px;font-size:14px;text-align:center;}
+.layerDaumDomain span {display:block;}
+.layerDaumDomain .daumtxt1 {height:158px;margin-top:38px;}
+.layerDaumDomain .daumDomainList {width:473px;margin:36px auto 30px;padding:26px 0 24px 47px;background-color:#f2f2f2;}
+.layerDaumDomain .daumDomainList li {text-align:left;padding-bottom:2px;font-weight:bold;color:#333333;}
+.layerDaumDomain .daumDomainList li label span {display:inline;color:#6d81df;}
+.layerDaumDomain .daumDomainList2 {padding-left:0;}
+.layerDaumDomain .daumDomainList2 li {text-align:center;}
+
+/* input text */
+.ava {text-indent:16px;color:#6f81f3;background:url(https://ssl.nx.com/S2/membership/2011/icon/ico_pass.gif) no-repeat left 10px;}
+.notAva {text-indent:16px;color:#f2685b;background:url(https://ssl.nx.com/S2/membership/2011/icon/ico_fail.gif) no-repeat left 10px;}
+
+/* page */
+.pageSec {text-align:center;font-size:11px;}
+.pageSec img {vertical-align:middle;margin-bottom:2px;}
+.pageSec .num {padding:0 10px 0 5px;}
+.pageSec strong {font-weight:bold;color:#333333;}
+
+/* 약관 */
+.stipCnts {line-height:140%}
+	.stipCnts h2 {font-weight:bold;padding-top:20px;}
+	.stipCnts h4 {font-weight:bold;padding:20px 0 17px;font-size:16px;color:#000000;}
+	.stipCnts h4 a {color:#000000;}
+	.stipCnts h5 {padding-bottom:10px;color:#333333;font-size:14px;}
+	.stipCnts h5 a {color:#000000;}
+	.stipCnts p {padding-bottom:15px;}
+	.stipCnts p.type1 {padding-top:20px;}
+	.stipCnts ol, .stipCnts ul {list-style:none;margin-bottom:10px;}
+	.stipCnts ol ol, .stipCnts ol ul, .stipCnts ul ul, .stipCnts ul ol {padding:3px 0 4px 15px;margin:0;}	
+	.stipCnts strong {color:#6f81f3;font-weight:normal;}
+	.stipCnts .fdUl {text-decoration:underline;}
+.stipCnts2 {padding-bottom:10px;}
+	.stipCnts2 h4 {font-size:14px;}
+	.stipCnts2 p {padding:0 0 10px 0;}
+	.stipCnts2 ul li {padding-left:10px;text-indent:-10px;}
+	.stipCnts2 ul li strong {color:#000000;font-size:16px;font-weight:bold;}
+.footer2 .stipCnts strong {color:#000000;font-weight:bold;}
+.stipCnts strong.fs {font-size:16px;color:#000000;font-weight:bold;}
+.footer2 .stipCnts ul li {padding-left:10px;text-indent:-10px;}
+.footer2 .stipCnts p.type2 {padding-bottom:0;}
+
+
+/* subNavi */
+.sideSec {float:left;width:189px;}
+.sideSec h2 {width:189px;height:60px;}
+.sideSec h2 span {display:none;}
+.sideSec .sideNav1 {margin-top:15px;}
+.sideSec .sideNav1 li {width:189px;height:35px;vertical-align:top;}
+.sideSec .sideNav1 li a {display:block;width:189px;height:35px;}
+.sideSec .sideNav1 li span {display:none;}
+.sideSec .sideNav1 .sub1 a:hover {background-position:-378px -62px;}
+.sideSec .sideNav1 .sub2 a:hover {background-position:-378px -97px;}
+.sideSec .sideNav1 .sub3 a:hover {background-position:-378px -132px;}
+.sideSec .sideNav1 .sub4 a:hover {background-position:-378px -167px;}
+.sideSec .sideNav1 .sub5 a:hover {background-position:-378px -202px;}
+.sideSec .sideNav1 .sub6 a:hover {background-position:-378px -237px;}
+.sideSec .sideNav1 .sub1 .on, .sideSec .sideNav1 .sub1 a.on:hover {background-position:-189px -62px;}
+.sideSec .sideNav1 .sub2 .on, .sideSec .sideNav1 .sub2 a.on:hover {background-position:-189px -97px;}
+.sideSec .sideNav1 .sub3 .on, .sideSec .sideNav1 .sub3 a.on:hover {background-position:-189px -132px;}
+.sideSec .sideNav1 .sub4 .on, .sideSec .sideNav1 .sub4 a.on:hover {background-position:-189px -167px;}
+.sideSec .sideNav1 .sub5 .on, .sideSec .sideNav1 .sub5 a.on:hover {background-position:-189px -202px;}
+.sideSec .sideNav1 .sub6 .on, .sideSec .sideNav1 .sub6 a.on:hover {background-position:-189px -237px;}
+.sideSec .sideNav2 {margin:15px 0 304px;padding-bottom:1px;background:url(https://ssl.nx.com/S2/membership/2011/global/sidenav2.gif) no-repeat left top;}
+.sideSec .sideNav2 li {width:189px;height:40px;vertical-align:top;}
+.sideSec .sideNav2 li a {display:block;width:189px;height:40px;}
+.sideSec .sideNav2 li span {display:none;}
+
+/* footer */
+.footer {clear:both;width:100%;height:120px;border-top:1px solid #c6c6c6;color:#6b6b6b;}
+.footer p {clear:both;padding-top:39px;font-style:normal;text-align:center;}
