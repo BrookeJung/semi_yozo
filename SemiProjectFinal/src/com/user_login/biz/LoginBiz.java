@@ -13,14 +13,17 @@ public class LoginBiz {
 	public LoginDto login(String id, String pw) {
 		return dao.login(id, pw);
 	}
-	public List<LoginDto> seleList(){
-		return dao.selectlist();
-	}
 	public LoginDto idSearch(String name, String email) {
 		return dao.idSearch(name, email);
 	}
-	public LoginDto selectOne(int seq) {
-		return dao.selectOne(seq);
+	public LoginDto pwSearch(String id, String email) {
+		return dao.pwSearch(id, email);
+	}
+	public List<LoginDto> seleList(){
+		return dao.selectlist();
+	}
+	public LoginDto selectOne(int userseq) {
+		return dao.selectOne(userseq);
 	}
 	public int user_insert(LoginDto dto) throws IOException {
 		return dao.user_insert(dto);
@@ -28,8 +31,11 @@ public class LoginBiz {
 	public int user_update(LoginDto dto) {
 		return dao.user_update(dto);
 	}
-	public int user_delete(int seq) {
-		return dao.user_delete(seq);
+	public int pwUpdate(String id,String code) {
+		return dao.pwUpdate(code, id);
+	}
+	public int user_delete(int userseq) {
+		return dao.user_delete(userseq);
 	}
 	
 	public boolean idChk(String id) {

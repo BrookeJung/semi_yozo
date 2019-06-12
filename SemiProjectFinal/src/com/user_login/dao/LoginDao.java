@@ -32,7 +32,7 @@ public class LoginDao extends SqlMapConfig{
 		return list;
 		
 	}
-	public LoginDto selectOne(int seq) {
+	public LoginDto selectOne(int userseq) {
 		
 		LoginDto dto = new LoginDto();
 		
@@ -40,7 +40,7 @@ public class LoginDao extends SqlMapConfig{
 		
 		try {
 			session=getSqlSessionFactory().openSession();
-			dto = session.selectOne(namespace+"selectOne", seq);
+			dto = session.selectOne(namespace+"selectOne", userseq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -82,13 +82,32 @@ public class LoginDao extends SqlMapConfig{
 			session = getSqlSessionFactory().openSession();
 			dto = session.selectOne(namespace + "idSearch", idSearch);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 
 		return dto;
 	}
-	
+	public LoginDto pwSearch(String id, String email) {
+
+		Map<String, Object> pwSearch = new HashMap<String, Object>();
+		pwSearch.put("id", id);
+		pwSearch.put("email", email);
+		SqlSession session = null;
+		LoginDto dto = new LoginDto();
+
+		try {
+			session = getSqlSessionFactory().openSession();
+			dto = session.selectOne(namespace + "pwSearch", pwSearch);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		return dto;
+	}
 	public LoginDto login(String id, String pw ) {
 		Map<String, String> login = new HashMap<String, String>();
 		login.put("id", id);
@@ -127,6 +146,25 @@ public class LoginDao extends SqlMapConfig{
 		return res;
 	}
 	
+	public int pwUpdate(String id,String code) {
+//		Map<String, Object> pwUpdate = new HashMap<String, Object>();
+//		pwUpdate.put("pw", code);
+//		pwUpdate.put("id", id);
+		SqlSession session = null;
+		LoginDto dto = new LoginDto();
+		dto.setId(id);
+		dto.setPw(code);
+		int res = 0;
+			try {
+				session=getSqlSessionFactory().openSession();
+				res = session.update(namespace+"pwUpdate", dto);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return res;
+	}
+	
 	public int user_update(LoginDto dto) {
 		int res = 0;
 		SqlSession session = null;
@@ -147,13 +185,13 @@ public class LoginDao extends SqlMapConfig{
 		return res;
 	}
 	
-	public int user_delete(int seq) {
+	public int user_delete(int userseq) {
 		int res = 0;
 		
 		SqlSession session = null;
 		try {
 			session=getSqlSessionFactory().openSession(false);
-			res=session.delete(namespace+"user_delete", seq);
+			res=session.delete(namespace+"user_delete", userseq);
 			
 			if(res > 0) {
 				session.commit();

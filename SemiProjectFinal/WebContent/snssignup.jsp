@@ -62,7 +62,7 @@
 							width="272" height="19" alt="넥슨 회원가입 방식을 선택해주세요.">
 					</p>
 					<ul>
-						<li><a href="logincontroller.do?command=joininsertform" id="ucSelectJoinType_btnJoinEmailID"
+						<li><a href="#" id="ucSelectJoinType_btnJoinEmailID"
 							name="ucSelectJoinType$btnJoinEmailID" memberbutton="true"
 							a2sobject="MEMBERS_JOIN" a2sopt="SignupwithEmail"><img
 								src="image/emailsignup.png" width="380" height="18"

@@ -4,6 +4,7 @@
    response.setHeader("Cache-control", "no-store");
    response.setHeader("Expires", "0");
 %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ page import="com.user_login.biz.LoginBiz" %>    
@@ -45,9 +46,9 @@
 <body class="page1">
 <%
 
-   LoginDto dto  = (LoginDto)session.getAttribute("dto");
+   LoginDto ldto  = (LoginDto)session.getAttribute("ldto");
 
-   if(dto == null){
+   if(ldto == null){
          pageContext.forward("mainboard.jsp");      
    }
 

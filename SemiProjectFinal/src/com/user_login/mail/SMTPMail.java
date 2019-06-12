@@ -12,7 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SMTPMail {
-   public static void gmailSend(String email,String content) {
+   public static void gmailSend(String email,String content, String title) {
         String user = "1whtndus@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
         String password = "lhhabjbjztunjnrr";   // 패스워드
 
@@ -37,7 +37,7 @@ public class SMTPMail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); 
 
             // Subject
-            message.setSubject("yorizori 회원가입 인증 이메일 입니다"); //메일 제목을 입력
+            message.setSubject(title); //메일 제목을 입력
 
             // Text
             message.setText(content);    //메일 내용을 입력

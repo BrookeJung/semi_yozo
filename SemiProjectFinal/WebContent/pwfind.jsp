@@ -36,6 +36,18 @@
           $().UItoTop({ easingType: 'easeOutQuart' });
         }) 
      </script>
+     
+     <script type="text/javascript">
+     function checkEmail() {
+   	  var frm = document.idfind;
+   	  var regExp = '/^([/\w/g\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/';
+   	  if (!regExp.test(frm.email.value)) {
+   	   alert('올바른 email을 입력해주세요.');
+   	   frm.email.focus();
+   	  }
+   	 }
+
+     </script>
 <title>Id_find</title>
 </head>
  <body class="page1">
@@ -72,7 +84,8 @@
 	<div class="content">
 
 		<form id="formLogin" name="formLogin" method="post"
-			action="로그인컨트롤러로가자">
+			action="mailController.do">
+			<input type="hidden" name="command" value="pwchange">
 			<div class="wrapper">
 				<div class="header">
 					<!--  <h1><img src="images/logo.png" width="300" height="100" alt="로그인"></h1> -->
@@ -87,16 +100,16 @@
 								</legend>
 								
 								<div class="id">
-									<input type="text" id="myid" class="input01"
+									<input type="text" id="id" name="id" class="input01"
 										placeholder="id을 입력해주세요.">
 								</div>
-								<div class="email">
-									<input type="text" id="myemail" class="input01"
-										placeholder="email를 입력해주세요.">
+								<div class="pass">
+									<input type="email" id="email" name="email" class="input01"
+										onblur="checkEmail()" placeholder="email를 입력해주세요.">
 								</div>
 								<p class="loginMsg d_msgError"></p>
 								<div class="btLogin">
-									<button type="button" class="button01" id="btnLogin"
+									<button type="submit" class="button01"
 										a2s="click" obj="P_LOGIN"
 										opt="{&quot;Name&quot;:&quot;IDLogIn&quot;}">
 										<span>PW 찾기</span>

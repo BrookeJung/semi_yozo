@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");%>
+<% response.setContentType("text/html; charset=UTF-8"); %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,20 +14,10 @@
 
 <meta data-react-helmet="true" charset="utf-8" />
 <meta data-react-helmet="true" name="keywords"
-	content="±¸¸§IDE, goormIDE, goorm ide, ÄÚµå, ¿¡µðÅÍ, IDE, ¿öÅ©½ºÆäÀÌ½º, µµÄ¿, docker, integrated development environment, cloud ide, cloud development environment, cloud editor, web based ide, aws" />
+	content="êµ¬ë¦„IDE, goormIDE, goorm ide, ì½”ë“œ, ì—ë””í„°, IDE, ì›Œí¬ìŠ¤íŽ˜ì´ìŠ¤, ë„ì»¤, docker, integrated development environment, cloud ide, cloud development environment, cloud editor, web based ide, aws" />
 <meta data-react-helmet="true" name="description"
-	content="±¸¸§Àº Å¬¶ó¿ìµå ±â¼úÀ» ÀÌ¿ëÇÏ¿© ´©±¸³ª ÄÚµùÀ» ¹è¿ì°í, ½Ç·ÂÀ» Æò°¡ÇÏ°í, ¼ÒÇÁÆ®¿þ¾î¸¦ °³¹ßÇÒ ¼ö ÀÖ´Â Å¬¶ó¿ìµå ¼ÒÇÁÆ®¿þ¾î »ýÅÂ°èÀÔ´Ï´Ù." />
-<meta data-react-helmet="true" property="og:type" content="website" />
-<meta data-react-helmet="true" property="og:title" content="±¸¸§ ¼­ºñ½º ·Î±×ÀÎ" />
-<meta data-react-helmet="true" property="og:site_name" content="±¸¸§" />
-<meta data-react-helmet="true" property="og:description"
-	content="±¸¸§Àº Å¬¶ó¿ìµå ±â¼úÀ» ÀÌ¿ëÇÏ¿© ´©±¸³ª ÄÚµùÀ» ¹è¿ì°í, ½Ç·ÂÀ» Æò°¡ÇÏ°í, ¼ÒÇÁÆ®¿þ¾î¸¦ °³¹ßÇÒ ¼ö ÀÖ´Â Å¬¶ó¿ìµå ¼ÒÇÁÆ®¿þ¾î »ýÅÂ°èÀÔ´Ï´Ù." />
-<meta data-react-helmet="true" property="og:url"
-	content="https://accounts.goorm.io" />
-<meta data-react-helmet="true" property="al:web:url"
-	content="https://accounts.goorm.io" />
-<meta data-react-helmet="true" property="og:image"
-	content="https://statics.goorm.io/images/1200_628_goorm.png" />
+	content="êµ¬ë¦„ì€ í´ë¼ìš°ë“œ ê¸°ìˆ ì„ ì´ìš©í•˜ì—¬ ëˆ„êµ¬ë‚˜ ì½”ë”©ì„ ë°°ìš°ê³ , ì‹¤ë ¥ì„ í‰ê°€í•˜ê³ , ì†Œí”„íŠ¸ì›¨ì–´ë¥¼ ê°œë°œí•  ìˆ˜ ìžˆëŠ” í´ë¼ìš°ë“œ ì†Œí”„íŠ¸ì›¨ì–´ ìƒíƒœê³„ìž…ë‹ˆë‹¤." />
+
 <meta data-react-helmet="true" name="msapplication-TileColor"
 	content="#da532c" />
 <meta data-react-helmet="true" name="theme-color" content="#ffffff" />
@@ -41,8 +33,7 @@
 <link data-react-helmet="true" rel="icon" type="image/png" sizes="16x16"
 	href="/favicon-16x16.png" />
 <link data-react-helmet="true" rel="manifest" href="/site.webmanifest" />
-<link data-react-helmet="true" rel="mask-icon"
-	href="/safari-pinned-tab.svg" color="#5bbad5" />
+
 <title data-react-helmet="true">Mypage</title>
 
 
@@ -62,6 +53,8 @@
 		$().UItoTop({
 			easingType : 'easeOutQuart'
 		});
+		
+		
 	})
 </script>
 <title>Id_find</title>
@@ -81,11 +74,11 @@
         <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
         <ul>
           <li class="current bt-icon "><a href="mainboard.jsp">Home</a></li>
-         <li class="bt-icon"><a href="RecipeController.do?command=myrefrigerator&fakeid=fake">Àç·áµî·Ï</a></li>
-         <li class="bt-icon"><a href="RecipeController.do?command=allrecipe">·¹½ÃÇÇ</a></li>
-         <li class="bt-icon"><a href="write.jsp">·¹½ÃÇÇµî·Ï</a></li>
+         <li class="bt-icon"><a href="#">ìž¬ë£Œë“±ë¡</a></li>
+         <li class="bt-icon"><a href="#">ë ˆì‹œí”¼</a></li>
+         <li class="bt-icon"><a href="write.jsp">ë ˆì‹œí”¼ë“±ë¡</a></li>
          <li class="bt-icon"><a href="#">Q&A</a></li>
-         <li class="bt-icon"><a href="mypage.jsp">¸¶ÀÌÆäÀÌÁö</a></li>	
+         <li class="bt-icon"><a href="mypage.jsp">ë§ˆì´íŽ˜ì´ì§€</a></li>	
         </ul>
       </nav>
     
@@ -100,7 +93,7 @@
 	<div class="content">
 		<br />
 		<div>
-			<h1 id="mypage">¸¶ÀÌ ÆäÀÌÁö</h1>
+			<h1 id="mypage">ë§ˆì´ íŽ˜ì´ì§€</h1>
 		</div>
 
 		<table id="list">
@@ -112,32 +105,27 @@
 				<col width="20%">
 			</colgroup> -->
 			<tr >
-				<th>Âò ¸ñ·Ï º¸±â</th>
-				<td><input type="button" value="È®ÀÎ" onclick="" /></td>
+				<th>ì°œ ëª©ë¡ ë³´ê¸°</th>
+				<td><input type="button" value="í™•ì¸" onclick="" /></td>
 			</tr>
 			<tr>
-				<td>³» Á¤º¸ ¼öÁ¤</td>
-				<td><input type="button" value="È®ÀÎ" onclick="" /></td>
+				<td>ë‚´ ì •ë³´ ìˆ˜ì •</td>
+				<td><input type="button" value="í™•ì¸" onclick="location.href='userupdate.jsp'" /></td>
 			</tr>
 			<tr>
-				<td>±¸¸Å ¸ñ·Ï</td>
-				<td><input type="button" value="È®ÀÎ" onclick="" /></td>
+				<td>êµ¬ë§¤ ëª©ë¡</td>
+				<td><input type="button" value="í™•ì¸" onclick="" /></td>
 			</tr>
 			<tr>
-				<td>³»°¡ ¾´ ·¹½ÃÇÇ</td>
-				<td><input type="button" value="È®ÀÎ" onclick="" /></td>
+				<td>ë‚´ê°€ ì“´ ë ˆì‹œí”¼</td>
+				<td><input type="button" value="í™•ì¸" onclick="" /></td>
 			</tr>
 			<tr>
-				<td>·Î±×¾Æ¿ô</td>
-				<td><input type="button" value="È®ÀÎ" onclick="" /></td>
-			</tr>
-			<tr>
-				<td>È¸¿ø Å»Åð</td>
-				<td><input type="button" value="È®ÀÎ" onclick="" /></td>
-
+				<td>íšŒì› íƒˆí‡´</td>
+				<td><input type="button" value="í™•ì¸" onclick="location.href='logincontroller.do?command=delete'" /></td>
 			</tr>
 		</table>
-		<input id="mok" type="button" value="¸ñ·Ï"
+		<input id="mok" type="button" value="ëª©ë¡"
 			onclick="location.href='index.html'" />
 	</div>
 	<!-- ------------------------------------------------------------------------------------ -->

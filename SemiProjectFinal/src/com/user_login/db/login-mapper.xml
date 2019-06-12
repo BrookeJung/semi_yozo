@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="LoginDto">
-		SELECT * FROM LOGIN WHERE SEQ=#{sep}
+		SELECT * FROM LOGIN WHERE USERSEQ=#{userseq}
 	
 	</select>
 	
@@ -20,20 +20,30 @@
 		SELECT ID FROM LOGIN WHERE ID=#{id}
 	
 	</select>
+	
 	<select id="idSearch" parameterType="map" resultType="LoginDto">
 		SELECT ID FROM LOGIN WHERE NAME=#{name} AND EMAIL=#{email}
 	</select>
+	
+	<select id="pwSearch" parameterType="map" resultType="LoginDto">
+		SELECT ID FROM LOGIN WHERE ID=#{id} AND EMAIL=#{email}
+	</select>
+	
 	<insert id="user_insert" parameterType="LoginDto">
 		INSERT INTO LOGIN
-		VALUES(LOGINSEQ.NEXTVAL,#{name},#{id},#{pw},#{email},#{addr})
+		VALUES(LOGINSEQ.NEXTVAL,#{name},#{id},#{pw},#{addr},#{email})
 	</insert>
 	
 	<update id="user_update" parameterType="int">
-		UPDATE LOGIN SET PW=#{pw}, ADDR=#{addr}, EMAIL=#{email} WHERE SEQ=#{seq}
+		UPDATE LOGIN SET PW=#{pw}, ADDR=#{addr}, EMAIL=#{email} WHERE USERSEQ=#{userseq}
+	</update>
+	
+	<update id="pwUpdate" parameterType="LoginDto">
+		UPDATE LOGIN SET PW=#{pw} WHERE ID=#{id}
 	</update>
 	
 	<delete id="user_delete" parameterType="int">
-		DELETE FROM LOGIN WHERE SEQ=#{seq}
+		DELETE FROM LOGIN WHERE USERSEQ=#{userseq}
 	</delete>
 	
 	

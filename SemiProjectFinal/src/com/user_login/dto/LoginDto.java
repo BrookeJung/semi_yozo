@@ -2,7 +2,7 @@ package com.user_login.dto;
 
 public class LoginDto {
 
-	private int seq;
+	private int userseq;
 	private String name;
 	private String id;
 	private String pw;
@@ -15,9 +15,9 @@ public class LoginDto {
 		
 	}
 
-	public LoginDto(int seq, String name, String id, String pw,  String email ,String addr) {
+	public LoginDto(int userseq, String name, String id, String pw,  String email ,String addr) {
 		super();
-		this.seq = seq;
+		this.userseq = userseq;
 		this.name = name;
 		this.id = id;
 		this.pw = pw;
@@ -28,12 +28,12 @@ public class LoginDto {
 
 	}
 
-	public int getSeq() {
-		return seq;
+	public int getUserSeq() {
+		return userseq;
 	}
 
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setUserSeq(int userseq) {
+		this.userseq = userseq;
 	}
 
 	public String getName() {
