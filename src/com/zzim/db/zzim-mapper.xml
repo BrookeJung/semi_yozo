@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zzim.mapper">
+<resultMap type="ZzimDto" id="ZzimMap">
+	<result column="SEQ" property="seq"/>
+	<result column="ID" property="id"/>
+	<result column="RECIPE_ID" property="recipe_id"/>
+	<result column="RECIPE_NM_KO" property="recipe_nm_ko"/>
+</resultMap>
+
+<insert id="zzimInsert" parameterType="ZzimDto">
+INSERT INTO ZZIM VALUES (ZZIMSEQ.NEXTVAL,#{id},#{recipe_id},#{recipe_nm_ko})
+</insert>
+
+<select id="zzimList" resultType="ZzimDto" resultMap="ZzimMap">
+SELECT * FROM ZZIM WHERE ID = #{id} ORDER BY SEQ
+</select>
+
+<delete id="zzimDelete" parameterType="int">
+DELETE FROM ZZIM WHERE SEQ = #{seq}
+</delete>
+
+<select id="getName" parameterType="int" resultType="String">
+SELECT RECIPE_NM_KO FROM RECIPE_INFO WHERE RECIPE_ID=#{recipe_id}
+</select>
+
+<delete id="muldel" parameterType="hashMap">
+DELETE FROM ZZIM WHERE 
+SEQ IN(
+<foreach collection="seqArr" item="seqArr" separator=",">
+#{seqArr}
+</foreach>
+)
+</delete>
+
+
+</mapper>

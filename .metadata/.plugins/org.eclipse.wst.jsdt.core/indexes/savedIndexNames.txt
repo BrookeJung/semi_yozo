@@ -1,2 +1,0 @@
-INDEX VERSION 1.4+D:\Users\sooyeon\Documents\semi_yozo\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2664416.index

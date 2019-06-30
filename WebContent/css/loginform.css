@@ -1,0 +1,436 @@
+a, abbr, acronym, address, big, blockquote, body, button, caption, cite,
+	code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, img, ins,
+	kbd, label, legend, li, ol, p, pre, q, s, samp, small, span, strike,
+	strong, table, tbody, td, tfoot, th, thead, tr, ul {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	background: 0 0;
+	font-size: 1em
+}
+
+ol, ul {
+	list-style: none
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	background-color: #fafafa
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	font: 12px/1.335 "돋움", dotum, "Segoe WP", Helvetica, "sans serif";
+	color: #666
+}
+
+button, input {
+	font: 1em "돋움", dotum, "Segoe WP", Helvetica, "sans serif";
+	color: #666
+}
+
+button {
+	position: relative;
+	display: -moz-inline-stack;
+	display: inline-block;
+	text-decoration: none !important;
+	white-space: nowrap;
+	vertical-align: top;
+	overflow: visible;
+	cursor: pointer
+}
+
+
+
+
+
+.wrapper {
+	position: relative;
+	margin: 0
+}
+
+.header {
+	width: 440px;
+	height: 139px;
+	margin: 0 auto
+}
+
+#contents {
+	position: relative;
+	width: 440px;
+	margin: 0 auto;
+	padding-bottom: 20px
+}
+
+.header h1 {
+	padding-top: 90px;
+	margin-left: 140px
+}
+
+.loginSec {
+	position: relative;
+	width: 440px;
+	margin: 0 auto
+}
+
+.loginSec .idPass {
+	overflow: hidden;
+	padding-top: 103px
+}
+
+.loginSec legend {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 43px;
+	border-bottom: 1px solid #cbcbcb
+}
+
+.loginSec legend span {
+	display: block;
+	width: 138px;
+	height: 28px;
+	padding-top: 15px;
+	color: #222;
+	font-weight: 700;
+	text-align: center;
+	border: 1px solid #cbcbcb;
+	border-bottom: 0;
+	background-color: #fafafa
+}
+
+.loginSec .id {
+	position: relative;
+	width: 433px;
+	height: 55px;
+	padding: 6px 0 0 7px;
+	background: url(https://ssl.nx.com/S2/p3/login/2016/set_page.gif)
+		no-repeat 0 0
+}
+
+.loginSec .pass {
+	position: relative;
+	width: 433px;
+	height: 55px;
+	padding: 6px 0 0 7px;
+	margin-top: 1px;
+	background: url(https://ssl.nx.com/S2/p3/login/2016/set_page.gif)
+		no-repeat 0 0
+}
+
+.captcha .captcha {
+	position: relative;
+	width: 433px;
+	height: 55px;
+	padding: 6px 0 0 7px;
+	margin-top: 10px;
+	background: url(https://ssl.nx.com/S2/p3/login/2016/set_page.gif)
+		no-repeat 0 0
+}
+
+.loginSec .input01 {
+	width: 402px;
+	padding: 12px 0 9px 10px;
+	font-size: 16px;
+	color: #222;
+	font-weight: 700;
+	border: 0;
+	background-color: transparent;
+	outline: 0
+}
+
+.loginSec .input01::placeholder {
+	font-weight: 400;
+	color: #999;
+	opacity: 1
+}
+
+.loginSec .input01:-ms-input-placeholder {
+	font-weight: 400;
+	color: #999
+}
+
+.loginSec .input01::-ms-input-placeholder {
+	font-weight: 400;
+	color: #999
+}
+
+.loginSec .focusInput {
+	background-position: 0 -98px
+}
+
+.loginSec .id .input01 {
+	ime-mode: disabled;
+	text-indent: 2px
+}
+
+.loginSec .captcha .captcha label, .loginSec .id label, .loginSec .otppass label,
+	.loginSec .pass label {
+	position: absolute;
+	top: 5px;
+	left: 4px;
+	display: block;
+	width: 411px;
+	height: 27px;
+	padding: 11px 0 4px 20px;
+	font-size: 16px;
+	color: #999
+}
+
+.loginSec .hiddenLabel label {
+	position: absolute;
+	z-index: -1;
+	visibility: hidden
+}
+
+.loginSec .btLogin {
+	margin-top: 21px
+}
+
+.loginSec .btLogin button {
+	width: 440px;
+	height: 58px;
+	color: #fff;
+	font-size: 18px;
+	border: 1px solid #ffe3d5;
+	background-color: #ffe3d5;
+}
+
+@media screen and (-ms-high-contrast:active) , ( -ms-high-contrast
+	:none) {
+	.loginSec .btLogin button {
+		padding-top: 4px
+	}
+}
+
+.loginSec .loginMsg {
+	padding-bottom: 5px;
+	color: #ff1616
+}
+
+
+
+
+
+
+
+
+
+.loginSec .loginMenu {
+	position: relative;
+	padding: 25px 0 37px;
+	color: #d9d9da
+}
+
+.loginSec .loginMenu a {
+	padding: 0 1px 0 3px;
+	color: #777;
+	text-decoration: none
+}
+
+.loginSec .loginMenu a:hover {
+	text-decoration: underline
+}
+
+.loginSec .loginMenu a.schId {
+	margin-left: -4px
+}
+
+.loginSec .loginMenu a.sec {
+	position: absolute;
+	top: 25px;
+	left: 375px;
+	width: 84px;
+	padding-left: 17px;
+	font-weight: 400;
+	background: url(https://ssl.nx.com/S2/p3/login/2016/ico_security.png)
+		no-repeat 0 0
+}
+
+.loginSec .tpa {
+	padding-bottom: 56px
+}
+
+.loginSec .tpa p {
+	height: 28px
+}
+
+.loginSec .tpa .btLoginFacebook, .loginSec .tpa .btLoginGoogle {
+	margin-bottom: 8px
+}
+
+.btLoginID {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+
+
+
+
+.btLoginID a, .btLoginPC a, .btLoginQR a {
+	display: block;
+	width: 138px;
+	height: 27px;
+	padding-top: 15px;
+	color: #7a7a7a;
+	text-decoration: none;
+	font-weight: 700;
+	text-align: center;
+	border: 1px solid #dedede;
+	border-bottom: 0;
+	background-color: #f4f4f4
+}
+
+.loginGuide {
+	padding-bottom: 23px;
+	margin: 20px 0 50px;
+	text-align: center;
+	background: #f4f4f4
+		url(https://ssl.nx.com/S2/p3/login/2016/img_step.png) no-repeat 65px
+		77px;
+	border: 1px solid #e1e1e1
+}
+
+.loginGuide dt {
+	position: relative;
+	display: block;
+	height: 28px;
+	padding: 17px 0 0 28px;
+	color: #333;
+	text-align: left;
+	font-weight: 700;
+	border-bottom: 1px solid #e1e1e1
+}
+
+.loginGuide dt a {
+	position: absolute;
+	top: 17px;
+	right: 27px;
+	display: block;
+	color: #486bcd
+}
+
+.loginGuide dd {
+	display: inline-block;
+	width: 120px;
+	padding-top: 79px;
+	font-size: 11px;
+	vertical-align: top;
+	color: #999
+}
+
+.loginGuide dd strong {
+	display: block;
+	padding-bottom: 6px;
+	color: #777
+}
+
+.loginGuide dd+dd {
+	margin-left: 20px
+}
+
+.captcha legend {
+	position: absolute;
+	z-index: -1;
+	visibility: hidden
+}
+
+.captcha .captchaMsg {
+	font-size: 11px;
+	color: #777
+}
+
+.captcha .id {
+	margin-top: 69px
+}
+
+.captcha .saveid {
+	top: 56px
+}
+
+.captcha .pass {
+	height: 56px
+}
+
+.captcha .btLogin input {
+	display: block
+}
+
+#captchaSec .security {
+	top: 57px
+}
+
+.captchaImg {
+	position: relative;
+	width: 438px;
+	height: 92px;
+	position: relative;
+	border: 1px solid #ccc;
+	background-color: #fff
+}
+
+.LBD_CaptchaImageDiv {
+	width: 268px;
+	height: 92px
+}
+
+.LBD_CaptchaImageDiv img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 268px;
+	height: 92px;
+	vertical-align: top;
+	border-right: 1px solid #ccc
+}
+
+.LBD_CaptchaDiv .LBD_CaptchaIconsDiv .LBD_ReloadLink {
+	margin: 0 !important;
+	border-bottom: 1px solid #ccc !important
+}
+
+.LBD_CaptchaDiv .LBD_CaptchaIconsDiv .LBD_SoundLink {
+	margin: 0 !important;
+	border-top: 1px solid #ccc !important
+}
+
+.LBD_ReloadLink, .LBD_SoundLink {
+	position: absolute;
+	left: 269px;
+	display: block;
+	width: 169px;
+	background: #486bcd
+		url(https://ssl.nx.com/S2/p3/login/2016/set_captcha.gif) no-repeat 0 0
+}
+
+.LBD_CaptchaDiv .LBD_CaptchaIconsDiv .LBD_ReloadLink img,
+	.LBD_CaptchaDiv .LBD_CaptchaIconsDiv .LBD_SoundLink img {
+	display: none !important
+}
+
+.LBD_ReloadLink {
+	top: 0;
+	height: 46px;
+	background-position: 0 0
+}
+
+.LBD_SoundLink {
+	top: 46px;
+	height: 45px;
+	background-position: 0 -50px
+}
+
+.LBD_ReloadLink:hover {
+	background-position: 0 -100px
+}
+
+.LBD_SoundLink:hover {
+	background-position: 0 -150px
+}

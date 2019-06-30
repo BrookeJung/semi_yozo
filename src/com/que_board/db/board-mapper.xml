@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board.mapper">
+
+	<resultMap type="QueBoardDto" id="queMap">
+		<result column="BOARDNO" property="boardno"/>
+		<result column="GROUPNO" property="groupno"/>
+		<result column="GROUPSQ" property="groupsq"/>
+		<result column="REPLYNO" property="replyno"/>
+		<result column="SECFLAG" property="secflag"/>
+		<result column="WRITER" property="writer"/>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENT" property="content"/>
+		<result column="REGDATE" property="regdate"/>
+	</resultMap>
+
+
+	<select id="selectOne" resultMap="queMap">
+	SELECT * FROM QUEBOARD WHERE BOARDNO = #{boardno}
+	</select>
+	<insert id="boardInsert" parameterType="QueBoardDto">
+	INSERT INTO QUEBOARD VALUES (BOARDNOSQ.NEXTVAL,GROUPNOSQ.NEXTVAL,1,0,#{secflag},#{writer},#{title},#{content},SYSDATE)	
+	</insert>
+	<update id="boardUpdate" parameterType="QueBoardDto">
+	UPDATE QUEBOARD SET TITLE=#{title}, CONTENT=#{content} WHERE BOARDNO=#{boardno} 
+	</update>
+	<delete id="boardDelete" parameterType="int">
+	DELETE FROM QUEBOARD WHERE GROUPNO=#{groupno}
+	</delete>
+	<delete id="boardDeleteReply" parameterType="int">
+	DELETE FROM QUEBOARD WHERE BOARDNO=#{boardno}
+	</delete>
+	<update id="boardDel" parameterType="int">
+	UPDATE QUEBOARD SET SECFLAG='Y' WHERE BOARDNO=#{boardno}
+	</update>	
+	<update id="updateAns" parameterType="int">
+	UPDATE QUEBOARD SET GROUPSQ = GROUPSQ+1
+	WHERE GROUPNO = (SELECT GROUPNO FROM QUEBOARD WHERE BOARDNO=#{parentno})
+	AND GROUPSQ &gt; (SELECT GROUPSQ FROM QUEBOARD WHERE BOARDNO=#{parentno})
+	</update>
+	
+	<insert id="insertAns" parameterType="QueBoardDto">
+	INSERT INTO QUEBOARD VALUES(BOARDNOSQ.NEXTVAL,
+	 (SELECT GROUPNO FROM QUEBOARD WHERE BOARDNO=#{boardno}),
+	(SELECT GROUPSQ FROM QUEBOARD WHERE BOARDNO=#{boardno})+1,
+	(SELECT REPLYNO FROM QUEBOARD WHERE BOARDNO=#{boardno})+1, 
+	 'N',#{writer},#{title},#{content},SYSDATE)
+	</insert>
+	
+
+	<select id="selectListOption" parameterType="Hashmap" resultType = "QueBoardDto">
+    SELECT * FROM ( SELECT ROWNUM RN,a.* FROM QUEBOARD a WHERE GROUPSQ=1 
+   		<if test="title!=null and content==null">
+			 and title like '%'|| #{title} ||'%' 
+ 	    </if>
+    	<if test="writer!=null">
+			 and writer like '%'|| #{writer} ||'%' 
+  		</if>
+   		<if test="content!=null and title==null">
+	 		 and content like '%'|| #{content} ||'%' 
+   		</if>
+    	<if test="title!=null and content!=null">
+    		and title like '%'|| #{title} ||'%' or content like '%'|| #{content} ||'%'
+    	</if>
+   			 ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end} 
+    </select>
+	
+	<select id="getTotalCount" parameterType="HashMap" resultType = "int">
+    SELECT COUNT(*) AS CNT FROM 
+      (SELECT * FROM QUEBOARD WHERE GROUPSQ=1 
+    	<if test="title!=null and content==null">
+	 		and title like '%'|| #{title} ||'%' 
+    	</if>
+    	<if test="writer!=null">
+	 		and writer like '%'|| #{writer} ||'%' 
+    	</if>
+    	<if test="content!=null and title==null">
+	 		and content like '%'|| #{content} ||'%' 
+    	</if>
+    	<if test="title!=null and content!=null">
+    		and title like '%'|| #{title} ||'%' or content like '%'|| #{content} ||'%'
+    	</if>
+    		)
+	</select>
+
+	<select id="selectListReply" resultType="QueBoardDto">
+	SELECT * FROM QUEBOARD WHERE GROUPNO=#{groupno} AND GROUPSQ &gt; 1
+	ORDER BY GROUPSQ DESC 
+	</select>
+	
+	<update id="replyCntup" parameterType="int">
+	UPDATE QUEBOARD SET REPLYNO = REPLYNO+1 WHERE BOARDNO=#{boardno}
+	</update>
+	
+</mapper>

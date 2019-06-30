@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipe.mapper">
+
+	<resultMap type="RecipeMaterialDto" id="materialDto">
+		<result column="RECIPE_ID" property="recipe_id" />
+		<result column="IRDNT_SN" property="irdnt_sn" />
+		<result column="IRDNT_NM" property="irdnt_nm" />
+		<result column="IRDNT_CPCTY" property="irdnt_cpcty" />
+		<result column="IRDNT_TY_CODE" property="irdnt_ty_code" />
+		<result column="IRDNT_TY_NM" property="irdnt_ty_nm" />
+	</resultMap>
+		<resultMap type="RecipeInfoDto" id="infoDto">
+		<result column="RECIPE_ID" property="recipe_id"/>
+		<result column="RECIPE_NM_KO" property="recipe_nm_ko"/>
+		<result column="SUMRY" property="sumry"/>
+		<result column="NATION_CODE" property="nation_code"/>
+		<result column="NATION_NM" property="nation_nm"/>
+		<result column="TY_CODE" property="ty_code"/>
+		<result column="TY_NM" property="ty_nm"/>
+		<result column="COOKING_TIME" property="cooking_time"/>
+		<result column="CALORIE" property="calorie"/>
+		<result column="QNT" property="qnt"/>
+		<result column="LEVEL_NM" property="level_nm"/>
+		<result column="IRDNT_CODE" property="irdnt_code"/>
+		<result column="IMG_URL" property="img_url"/>
+		<result column="DET_URL" property="det_url"/>
+		<result column="VIEWS" property="views"/>
+		<result column="ID" property="views"/>
+	</resultMap>
+
+	<!--재료추가시 datalist폼을위한것  -->
+	<select id="selectList" resultMap="materialDto">
+		SELECT DISTINCT IRDNT_NM FROM RECIPE_MATERIAL 
+	</select>
+	
+	<!-- 자신의 냉장고에 재료 추가됨 -->
+	<insert id="insertRefrigerator" parameterType="RefrigeratorDto">
+	INSERT INTO MY_REFRIGERATOR
+	 VALUES(#{id},#{irdnt_nm})
+	</insert>
+	<select id="selectmyrefrigeratorlist" parameterType="String" resultType="RefrigeratorDto">
+		SELECT DISTINCT IRDNT_NM FROM MY_REFRIGERATOR WHERE ID=#{id}
+	</select>
+	<!-- 내 냉장고 재료 -->
+	
+	<select id="selectrecipelist" parameterType="String" resultType="RecipeMaterialDto">
+		SELECT DISTINCT IRDNT_NM FROM RECIPE_MATERIAL WHERE RECIPE_ID=#{recipe_id}
+	</select>
+	<!-- 추천 레시피 재료 -->
+	
+	<select id="selectorderlist" parameterType="map" resultType="RecipeMaterialDto">
+		SELECT DISTINCT IRDNT_NM, PRICE FROM RECIPE_MATERIAL WHERE RECIPE_ID=#{recipe_id} AND IRDNT_NM NOT IN (SELECT DISTINCT IRDNT_NM FROM MY_REFRIGERATOR WHERE ID=#{id})
+	</select>
+	<!-- 주문 레시피 재료 -->
+	
+	<!-- 냉장고 재료 를 가장많이 가지고있는 요리정보를 출력함 -->
+	<select id="selectrecommend" parameterType="String" resultType="RecipeInfoDto">
+	<![CDATA[
+	
+ 
+  SELECT * FROM RECIPE_INFO 
+WHERE RECIPE_ID IN 
+ (SELECT RECIPE_ID FROM 
+  (SELECT RECIPE_ID,COUNT(*) AS COUNT FROM RECIPE_MATERIAL INNER JOIN MY_REFRIGERATOR ON MY_REFRIGERATOR.IRDNT_NM = RECIPE_MATERIAL.IRDNT_NM 
+ WHERE ID=#{id} GROUP BY RECIPE_MATERIAL.RECIPE_ID ORDER BY COUNT DESC) 
+ WHERE ROWNUM<=3)
+	]]>
+	
+	</select>
+	
+	
+	
+	
+	<!-- 해당 요리의 정보 -->
+	<select id="selectrecipeview" parameterType="int" resultType="RecipeInfoDto">
+		SELECT * FROM RECIPE_INFO WHERE RECIPE_ID=#{recipe_id} 	
+	</select>
+	<!-- 해당 요리의 재료 -->
+	<select id="selectprocessview" parameterType="int" resultType="RecipeProcessDto">
+		SELECT * FROM RECIPE_PROCESS WHERE RECIPE_ID=#{recipe_id} ORDER BY COOKING_NO ASC	
+	</select>
+	<!-- 해당 요리의 과정 -->
+	<select id="selectmaterialview" parameterType="int" resultType="RecipeMaterialDto">
+		SELECT * FROM RECIPE_MATERIAL WHERE RECIPE_ID=#{recipe_id}
+	</select>
+<!--내가 작성한 레시피(요리정보) 디비에 저장된다  -->
+	<insert id="insertrecipe" parameterType="RecipeInfoDto">
+	INSERT INTO RECIPE_INFO
+	 VALUES(RECIPE_ID_SEQ.NEXTVAL,#{recipe_nm_ko},#{sumry},0,#{nation_nm},0,#{ty_nm},#{cooking_time},null,null,null,null,#{img_url},null,0,#{id})
+	</insert>
+	
+	<!-- 내가 작성한레시피(재료) 디비에 저장된다 -->
+	<insert id="insertMaterial" parameterType="RecipeMaterialDto">
+   INSERT INTO RECIPE_MATERIAL
+   VALUES((SELECT MAX(RECIPE_ID) FROM RECIPE_INFO),0,#{irdnt_nm},null,null,null,0)
+ 	 </insert>
+   
+
+	<!-- 내가 작성한레시피(과정) 디비에 저장된다 -->
+	<insert id="insertProcess" parameterType="RecipeProcessDto">
+	INSERT INTO RECIPE_PROCESS
+	VALUES((SELECT MAX(RECIPE_ID) FROM RECIPE_INFO),#{cooking_no},#{cooking_dc},null,null)
+	
+	</insert>
+	
+	
+	
+	
+	<!-- 카테고리요리 보기 페이징포함 -->
+	<select id="selectcategoryList" parameterType="hashmap" resultType="RecipeInfoDto">
+	SELECT * FROM
+	(SELECT ROWNUM RN ,a.* FROM RECIPE_INFO a WHERE 
+	NATION_NM =#{nation_nm}  AND TY_NM = #{ty_nm}
+            <choose>    
+            <when test='cooking_time=="0~30분"'>
+            AND (COOKING_TIME between 0 and 30)
+            </when>
+            <when test='cooking_time=="30분~60분"'>       
+            AND (COOKING_TIME between 30 and 60)
+            </when>
+            <when test='cooking_time=="60분~120분"'>
+            AND (COOKING_TIME between 60 and 120)
+            </when>
+            <when test='cooking_time=="120분~200분"'>
+           	AND (COOKING_TIME between 120 and 200)
+            </when>
+           	</choose>
+     		 )where RN &gt;=#{begin} AND RN &lt;=#{end}
+	</select>
+	<select id="selectcategoryCount" parameterType="Hashmap" resultType="int">
+	
+	SELECT COUNT(*) FROM RECIPE_INFO WHERE 
+	NATION_NM= #{nation_nm} AND TY_NM= #{ty_nm} 
+		 <choose>   
+            <when test='cooking_time=="0~30분"'>
+               AND (COOKING_TIME between 0 and 30)
+            </when>
+            <when test='cooking_time=="30분~60분"'>       
+            AND (COOKING_TIME between 30 and 60)
+            </when>
+            <when test='cooking_time=="60분~120분"'>
+             AND (COOKING_TIME between 60 and 120)
+            </when>
+            <when test='cooking_time=="120분~200분"'>
+           	AND (COOKING_TIME between 120 and 200)
+            </when>
+          </choose>
+     </select>
+	<!-- 모든레시피보기 페이징포함 -->
+	<select id="allrecipeList" resultType="RecipeInfoDto">
+		SELECT * FROM (SELECT ROWNUM RN ,a.* FROM RECIPE_INFO a )
+		WHERE RN &gt;=#{begin} AND RN &lt;=#{end} 
+	</select>
+	<!-- 냉장고디비삭제용 -->
+	<delete id="deleteRefrmaterial" parameterType="String">
+      DELETE FROM MY_REFRIGERATOR WHERE ID = #{id}
+   </delete>
+   
+   
+   
+   
+   
+   <select id="selectLikeFood" parameterType="hashmap" resultType="RecipeInfoDto">
+    select * from ( SELECT ROWNUM RN,a.* FROM RECIPE_INFO a WHERE RECIPE_NM_KO LIKE '%'||#{recipe_nm_ko}||'%')
+     WHERE RN &gt;=#{begin} AND RN &lt;=#{end} 
+   </select>
+   
+	
+	<select id="selectCount" resultType="int">
+   	SELECT COUNT(*) AS CNT FROM RECIPE_INFO
+   </select>
+     <select id="selectLikeFoodCount" parameterType="String" resultType="int">
+      SELECT COUNT(*) FROM RECIPE_INFO WHERE RECIPE_NM_KO LIKE '%'||#{recipe_nm_ko}||'%'
+   </select>
+
+	<update id="recireadCount" parameterType="RecipeInfoDto">
+	UPDATE RECIPE_INFO SET VIEWS = VIEWS+1 WHERE RECIPE_ID=#{recipe_id}
+	</update>
+	
+	<!-- 내가등록한 레시피(정보) 
+	<select id="userrecipeview" parameterType="String" resultType="RecipeInfoDto">
+		SELECT * FROM RECIPE_INFO WHERE ID = #{id}
+	</select>
+	-->
+	
+	
+	
+	<!-- 내가등록한 레시피(정보) -->
+   <select id="userrecipeview" parameterType="Hashmap" resultType="RecipeInfoDto">
+      select * from (SELECT ROWNUM RN,a.* FROM (select * from RECIPE_INFO WHERE ID = #{id} order by recipe_id desc ) a)
+      WHERE RN &gt;=#{begin} AND RN &lt;=#{end} 
+   </select>
+	
+	<!-- 내가등록한 레시피(재료) -->
+	 <select id="userrecipematerialview"  resultType="RecipeMaterialDto">
+		SELECT * FROM RECIPE_MATERIAL
+	</select>
+	
+	<!-- 내가등록한 레시피(과정) -->
+	<select id="userrecipeprocessview"  resultType="RecipeProcessDto">
+		SELECT * FROM RECIPE_PROCESS 	
+	</select>
+	
+	<!-- 삭제 -->
+   <delete id="deleteRecipe" parameterType="int">
+   	  DELETE FROM RECIPE_INFO WHERE RECIPE_ID = #{recipe_id} 
+   </delete>
+   
+   <!-- 페이징 -->
+    <select id="selectmyreciCount" parameterType="Hashmap" resultType="int">
+     SELECT COUNT(*) FROM RECIPE_INFO WHERE ID=#{id}
+    </select>
+    <!-- 핫레시피 -->
+    <select id="selectHotRecipe"  resultType="RecipeInfoDto">
+      <![CDATA[
+      SELECT * FROM (SELECT * FROM RECIPE_INFO ORDER BY VIEWS DESC ) WHERE ROWNUM<=4
+      ]]>
+   </select>
+   
+
+</mapper>

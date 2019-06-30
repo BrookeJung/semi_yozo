@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-D:\Users\sooyeon\Documents\semi_yozo\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1063077100.index
-\yorizori\src

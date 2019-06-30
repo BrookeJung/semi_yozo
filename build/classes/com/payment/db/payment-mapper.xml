@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="payment.mapper">
+   <resultMap type="PaymentDto" id="PaymentMap">
+      <result column="PAYSEQ" property="payseq" />
+      <result column="ID" property="id" />
+      <result column="MATER" property="mater" />
+      <result column="PRICE" property="price" />
+      <result column="PAYDATE" property="paydate" />
+      <result column="PLACE" property="place" />
+   </resultMap>
+
+   <insert id="payInsert" parameterType="PaymentDto">
+      INSERT INTO PAYMENT VALUES
+      (PAYMENTSEQ.NEXTVAL,#{id},#{mater},#{price},SYSDATE,#{place})
+   </insert>
+
+   <select id="payList" resultType="PaymentDto" parameterType="map">
+      SELECT * FROM PAYMENT WHERE ID = #{id} ORDER BY PAYDATE
+   </select>
+
+   <delete id="payDelete" parameterType="int">
+      DELETE FROM PAYMENT WHERE PAYSEQ = #{payseq}
+   </delete>
+   
+   <delete id="muldel" parameterType="hashMap">
+      DELETE FROM PAYMENT WHERE
+      PAYSEQ IN(
+      <foreach collection="seqArr" item="seqArr" separator=",">
+         #{seqArr}
+      </foreach>
+      )
+   </delete>
+
+
+
+</mapper>
